@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryListingRequest;
 use App\Http\Requests\CategoryStatusRequest;
 use App\Http\Requests\DeleteCategoryRequest;
+use App\Http\Requests\ShowCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
@@ -32,30 +32,14 @@ class CategoriesController extends Controller
      */
     public function listing(CategoryListingRequest $request, int $pageNumber, string $name = ''): JsonResponse
     {
-        /*$validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);*/
-
-        /*$validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-        ], [
-            'required' => ':attribute is required',
-        ]); //->validate();
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }*/
-
         $data = $this->category->getListing($pageNumber, $name);
 
         return getResponse(true, $data);
     }
 
-    public function show(Request $request, int $id): JsonResponse
+    public function show(ShowCategoryRequest $request, int $id): JsonResponse
     {
-        $data = $this->category->get($int);
+        $data = $this->category->getData($id);
 
         return getResponse(true, $data);
     }
@@ -71,7 +55,7 @@ class CategoriesController extends Controller
             return getResponse(true, null, 'Category added successfully');
         } catch (Exception $exception) {
             report($exception);
-            //return getResponse(false, null, $exception->getMessage());
+
             return getResponse(false, null, 'Error occurred');
         }
     }
