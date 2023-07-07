@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectAllRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Project;
@@ -14,7 +15,7 @@ class ProjectsController extends Controller
     ) {
     }
 
-    public function all(int $teamId): JsonResponse
+    public function all(ProjectAllRequest $request, int $teamId): JsonResponse
     {
         $data = $this->project->getAll();
 
