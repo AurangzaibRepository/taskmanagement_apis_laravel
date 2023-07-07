@@ -19,6 +19,11 @@ class Department extends Model
 
     const UPDATED_AT = 'updated_at';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
