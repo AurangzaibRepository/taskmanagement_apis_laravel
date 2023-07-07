@@ -58,6 +58,12 @@ class Category extends Model
             ]);
     }
 
+    public function getData(int $id): array
+    {
+        return $this->find($id)
+            ->toArray();
+    }
+
     public function getAll(): array
     {
         $data = $this->orderBy('name')
