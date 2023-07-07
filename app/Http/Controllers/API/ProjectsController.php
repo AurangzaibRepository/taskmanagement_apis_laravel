@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectAllRequest;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Models\Project;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
