@@ -30,4 +30,12 @@ class ProjectAllRequest extends FormRequest
             'teamId.exists' => 'Team not found',
         ];
     }
+
+    protected function failedValidation(Vaidator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
+    }
 }
