@@ -17,7 +17,7 @@ class ProjectsController extends Controller
 
     public function all(ProjectAllRequest $request, int $teamId): JsonResponse
     {
-        $data = $this->project->getAll();
+        $data = $this->project->getAll($teamId);
 
         return getResponse(true, $data);
     }
