@@ -36,5 +36,12 @@ class Project extends Model
 
     public function getAll(int $teamId): array
     {
+        $data = $this->where('team_id', $teamId)
+                    ->select('id', 'name')
+                    ->oldest('name')
+                    ->get()
+                    ->toArray();
+
+        return $data;
     }
 }
