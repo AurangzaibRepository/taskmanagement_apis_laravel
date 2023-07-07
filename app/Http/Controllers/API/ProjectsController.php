@@ -9,6 +9,11 @@ use App\Models\Project;
 
 class ProjectsController extends Controller
 {
+    public function __construct(
+        private Project $project,
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      */
