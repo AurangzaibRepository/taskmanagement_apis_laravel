@@ -12,4 +12,12 @@ class ProjectAllRequest extends FormRequest
             'teamId' => 'integer|exists:teams,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'teamId.exists' => 'Team not found',
+        ];
+    }
 }
