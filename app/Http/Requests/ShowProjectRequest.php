@@ -12,4 +12,12 @@ class ShowProjectRequest extends FormRequest
             'id' => 'integer|exists:projects',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Project not found',
+        ];
+    }
 }
