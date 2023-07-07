@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\CategoriesController;
-use App\Http\Controllers\API\TeamsController;
 use App\Http\Controllers\API\ProjectsController;
+use App\Http\Controllers\API\TeamsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +29,5 @@ Route::resource('categories', CategoriesController::class);
 Route::get('teams/all', [TeamsController::class, 'all']);
 Route::get('teams/listing/{pageNumber}/{code?}/{name?}', [TeamsController::class, 'listing']);
 Route::resource('teams', TeamsController::class);
+
+Route::resource('projects', ProjectsController::class);
