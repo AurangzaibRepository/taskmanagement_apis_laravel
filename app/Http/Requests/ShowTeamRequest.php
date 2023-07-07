@@ -9,6 +9,13 @@ use Illuminate\Http\JsonResponse;
 
 class ShowTeamRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'id' => $this->route('team'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
