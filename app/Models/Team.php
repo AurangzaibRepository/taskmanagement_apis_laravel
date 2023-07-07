@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class Team extends Model
 {
@@ -87,6 +88,16 @@ class Team extends Model
             ->toArray();
 
         return $data;
+    }
+
+    public function getData(int $id): array
+    {
+        $data = $this->where('id', $id)
+            ->with(['projects', 'users', 'departments'])
+            ->get()
+            ->toArray();
+
+        return Arr::first($data);
     }
 
     public function saveRecord(Request $request): void
