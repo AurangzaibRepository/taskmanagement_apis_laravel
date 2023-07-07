@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-use Exception;
 
 class Handler extends ExceptionHandler
 {
@@ -28,9 +28,8 @@ class Handler extends ExceptionHandler
             //
         });
 
-        $this->renderable(function(Exception $exception) {
-            //return getResponse(false, null, 'Error occurred');
-            return getResponse(false, null, $exception->getMessage());
+        $this->renderable(function (Exception $exception) {
+            return getResponse(false, null, 'Error occurred');
         });
     }
 }
