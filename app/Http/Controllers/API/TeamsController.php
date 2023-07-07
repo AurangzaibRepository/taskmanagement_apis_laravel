@@ -37,6 +37,9 @@ class TeamsController extends Controller
 
     public function show(int $id): JsonResponse
     {
+        $data = $this->team->getData($id);
+
+        return getResponse(true, $data);
     }
 
     public function store(StoreTeamRequest $request): JsonResponse
