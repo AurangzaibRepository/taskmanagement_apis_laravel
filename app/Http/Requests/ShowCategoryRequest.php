@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
+
+class ShowCategoryRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'id' => 'integer|exists:categories',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Category not found',
+        ];
+    }
+}

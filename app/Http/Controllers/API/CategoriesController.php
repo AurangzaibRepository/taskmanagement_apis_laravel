@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryListingRequest;
+use App\Http\Requests\CategoryStatusRequest;
+use App\Http\Requests\DeleteCategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+
+class CategoriesController extends Controller
+{
+    public function __construct(
+        private Category $category
+    ) {
+    }
+
+    public function all(): JsonResponse
+    {
+        $data = $this->category->getAll();
+
+        return getResponse(true, $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function listing(CategoryListingRequest $request, int $pageNumber, string $name = ''): JsonResponse
+    {
+        /*$validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);*/
+
+        /*$validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+        ], [
+            'required' => ':attribute is required',
+        ]); //->validate();
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }*/
+
+        $data = $this->category->getListing($pageNumber, $name);
+
+        return getResponse(true, $data);
+    }
+
+    public function show(Request $request, int $id): JsonResponse
+    {
+        $data = $this->category->get($int);
+
+        return getResponse(true, $data);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreCategoryRequest $request): JsonResponse
+    {
+        try {
+            $this->category->saveRecord($request->all());
+
+            return getResponse(true, null, 'Category added successfully');
+        } catch (Exception $exception) {
+            report($exception);
+            //return getResponse(false, null, $exception->getMessage());
+            return getResponse(false, null, 'Error occurred');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateCategoryRequest $request, string $id): JsonResponse
+    {
+        $this->category->updateRecord($id, $request->all());
+
+        return getResponse(true, null, 'Category updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(DeleteCategoryRequest $request, string $id): JsonResponse
+    {
+        $this->category->deleteRecord($id);
+
+        return getResponse(true, null, 'Category deleted successfully');
+    }
+
+    public function changeStatus(CategoryStatusRequest $request, int $id, string $status): JsonResponse
+    {
+        $statusText = ($status === 'Active' ? 'activated' : 'deactivated');
+
+        $this->category->updateStatus($id, $status);
+
+        return getResponse(true, null, "Category {$statusText} successfully");
+    }
+}
