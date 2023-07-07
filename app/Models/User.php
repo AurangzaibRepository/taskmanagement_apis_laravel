@@ -10,6 +10,11 @@ class User extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'first_name',
         'last_name',
