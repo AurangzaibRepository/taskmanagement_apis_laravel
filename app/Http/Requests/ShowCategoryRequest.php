@@ -7,6 +7,13 @@ use Illuminate\Http\JsonResponse;
 
 class ShowCategoryRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'id' => $this->route('category'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
