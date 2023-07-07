@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteTeamRequest;
+use App\Http\Requests\ShowTeamRequest;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\TeamListingRequest;
 use App\Http\Requests\UpdateTeamRequest;
@@ -35,7 +36,7 @@ class TeamsController extends Controller
         return getResponse(true, $data);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(ShowTeamRequest $request, int $id): JsonResponse
     {
         $data = $this->team->getData($id);
 
