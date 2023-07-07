@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamsController;
-use App\Http\Controllers\ProjectsController;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 /*
