@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum CategoryStatusEnum:string {
+enum CategoryStatusEnum: string
+{
     case Active = 'Active';
     case Inactive = 'Inactive';
 }
