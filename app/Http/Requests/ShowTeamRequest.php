@@ -12,4 +12,12 @@ class ShowTeamRequest extends FormRequest
             'id' => 'integer|exists:teams',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Team not found',
+        ];
+    }
 }
