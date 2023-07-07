@@ -30,4 +30,5 @@ Route::get('teams/all', [TeamsController::class, 'all']);
 Route::get('teams/listing/{pageNumber}/{code?}/{name?}', [TeamsController::class, 'listing']);
 Route::resource('teams', TeamsController::class);
 
+Route::get('projects/all', [ProjectsController::class, 'all']);
 Route::resource('projects', ProjectsController::class);
