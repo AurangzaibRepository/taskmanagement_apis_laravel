@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\TeamsController;
+use App\Http\Controllers\API\ProjectsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
