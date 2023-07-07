@@ -19,6 +19,11 @@ class Project extends Model
 
     const UPDATED_AT = 'updated_at';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
