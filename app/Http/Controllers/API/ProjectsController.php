@@ -14,6 +14,13 @@ class ProjectsController extends Controller
     ) {
     }
 
+    public function all(int $teamId): JsonResponse
+    {
+        $data = $this->project->getAll();
+
+        return getResponse(true, $data);
+    }
+
     /**
      * Display a listing of the resource.
      */
