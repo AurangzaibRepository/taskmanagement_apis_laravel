@@ -19,6 +19,11 @@ class Task extends Model
 
     const UPDATED_AT = 'updated_at';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function images(): HasMany
     {
         return $this->hasMany(TaskImage::class, 'task_id');

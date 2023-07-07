@@ -18,6 +18,11 @@ class TaskImage extends Model
 
     const UPDATED_AT = 'updated_at';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function task(): BelongsTo
     {
         return $this->belongsTo(Task::class, 'task_id');
