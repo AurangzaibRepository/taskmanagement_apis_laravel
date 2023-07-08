@@ -44,4 +44,8 @@ class Project extends Model
 
         return $data;
     }
+
+    public function getData(int $id): array
+    {
+    }
 }
