@@ -9,23 +9,17 @@ use Illuminate\Http\JsonResponse;
 
 class TeamListingRequest extends FormRequest
 {
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'page_number' => $this->route('pageNumber'),
-        ]);
-    }
-
     public function rules(): array
     {
         return [
-            'page_number' => 'integer',
+            'page_number' => 'required|integer',
         ];
     }
 
     public function messages(): array
     {
         return [
+            'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
         ];
     }
