@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Builder;
 
 class Project extends Model
 {
@@ -82,5 +83,8 @@ class Project extends Model
 
     public function getListing(Request $request): array
     {
+        $response = [
+            'page_number' => $request->pageNumber,
+        ];
     }
 }
