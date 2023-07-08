@@ -9,18 +9,10 @@ use Illuminate\Http\JsonResponse;
 
 class ProjectListingRequest extends FormRequest
 {
-    public function prepareForValidation(): void
-    {
-        $this->merge([
-            'pageNumber' => $this->route('pageNumber'),
-            'team_id' => $this->route('teamId'),
-        ]);
-    }
-
     public function rules(): array
     {
         return [
-            'pageNumber' => 'integer',
+            'pageNumber' => 'required|integer',
             'team_id' => 'nullable|integer|exists:teams,id',
         ];
     }
