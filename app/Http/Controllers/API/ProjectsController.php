@@ -56,7 +56,7 @@ class ProjectsController extends Controller
      */
     public function update(UpdateProjectRequest $request, string $id)
     {
-        $this->project->updateRecord($id, $request->all());
+        $this->project->updateRecord($request);
 
         return getResponse(true, null, 'Project updated successfully');
     }
