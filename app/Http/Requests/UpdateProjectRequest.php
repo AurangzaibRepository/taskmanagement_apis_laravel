@@ -32,6 +32,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'integer' => ':attribute must be an integer',
             'required' => ':attribute is required',
+            'id.exists' => 'Project not found',
             'code.max' => 'code must not be greater than 10 characters',
             'code.unique' => 'code already exists',
             'name.max' => 'name must not be greater than 100 characters',
