@@ -49,10 +49,10 @@ class Project extends Model
     public function getData(int $id): array
     {
         $data = $this->where('id', $id)
-                    ->with(['team', 'tasks'])
-                    ->get()
-                    ->toArray();
-              
+            ->with(['team:id,name', 'tasks:id,project_id,title,status'])
+            ->get()
+            ->toArray();
+
         return Arr::first($data);
     }
 }
