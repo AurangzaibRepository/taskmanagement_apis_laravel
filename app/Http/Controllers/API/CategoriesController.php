@@ -30,9 +30,9 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function listing(CategoryListingRequest $request, int $pageNumber, string $name = ''): JsonResponse
+    public function listing(CategoryListingRequest $request): JsonResponse
     {
-        $data = $this->category->getListing($pageNumber, $name);
+        $data = $this->category->getListing($request);
 
         return getResponse(true, $data);
     }
