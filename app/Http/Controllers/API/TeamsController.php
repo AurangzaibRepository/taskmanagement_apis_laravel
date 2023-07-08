@@ -45,9 +45,9 @@ class TeamsController extends Controller
 
     public function store(StoreTeamRequest $request): JsonResponse
     {
-        $this->team->saveRecord($request);
+        $data = $this->team->saveRecord($request);
 
-        return getResponse(true, null, 'Team added successfully');
+        return getResponse(true, $data, 'Team added successfully');
     }
 
     public function update(UpdateTeamRequest $request, string $id): JsonResponse
