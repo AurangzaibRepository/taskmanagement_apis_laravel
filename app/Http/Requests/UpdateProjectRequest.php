@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProjectRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'id' => $this->route('project'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
@@ -24,7 +31,7 @@ class UpdateProjectRequest extends FormRequest
             'required' => ':attribute is required',
             'code.max' => 'code must not be greater than 10 characters',
             'code.unique' => 'code already exists',
-            'name.max' = 'name must not be greater than 100 characters',
+            'name.max' => 'name must not be greater than 100 characters',
             'team_id.exists' => 'Team not found',
         ];
     }
