@@ -27,7 +27,7 @@ Route::get('categories/listing/{pageNumber}/{name?}', [CategoriesController::cla
 Route::resource('categories', CategoriesController::class);
 
 Route::get('teams/all', [TeamsController::class, 'all']);
-Route::get('teams/listing/{pageNumber}/{code?}/{name?}', [TeamsController::class, 'listing']);
+Route::post('teams/listing', [TeamsController::class, 'listing']);
 Route::resource('teams', TeamsController::class);
 
 Route::get('projects/all/{teamId}', [ProjectsController::class, 'all']);
