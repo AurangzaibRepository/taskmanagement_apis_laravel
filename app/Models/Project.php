@@ -79,4 +79,8 @@ class Project extends Model
                 $request->except(['_method']),
             );
     }
+
+    public function getListing(Request $request): array
+    {
+    }
 }
