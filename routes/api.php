@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('categories/all', [CategoriesController::class, 'all']);
 Route::post('categories/change-status/{id}/{status}', [CategoriesController::class, 'changeStatus']);
-Route::get('categories/listing/{pageNumber}/{name?}', [CategoriesController::class, 'listing']);
+Route::post('categories/listing', [CategoriesController::class, 'listing']);
 Route::resource('categories', CategoriesController::class);
 
 Route::get('teams/all', [TeamsController::class, 'all']);
