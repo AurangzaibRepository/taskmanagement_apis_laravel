@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\CategoryStatusEnum;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rules\Enum;
 
 class CategoryListingRequest extends FormRequest
 {
@@ -13,6 +15,7 @@ class CategoryListingRequest extends FormRequest
     {
         return [
             'pageNumber' => 'required|integer',
+            'status' => [new Enum(CategoryStatusEnum::class)],
         ];
     }
 
@@ -21,6 +24,7 @@ class CategoryListingRequest extends FormRequest
         return [
             'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
+            'status' => 'Invalid status',
         ];
     }
 
