@@ -106,7 +106,7 @@ class Project extends Model
             $query = $query->where('code', 'like', "%{$request->code}%");
         }
 
-        if ($reqeust->filled('name')) {
+        if ($request->filled('name')) {
             $query = $query->where('name', 'like', "%{$request->name}%");
         }
 
