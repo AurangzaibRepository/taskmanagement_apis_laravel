@@ -100,7 +100,7 @@ class Project extends Model
 
     private function applyFilters(Request $request): Builder
     {
-        $query = $this->latest('id');
+        $query = $this->oldest('name');
 
         if ($request->filled('code')) {
             $query = $query->where('code', 'like', "%{$request->code}%");
