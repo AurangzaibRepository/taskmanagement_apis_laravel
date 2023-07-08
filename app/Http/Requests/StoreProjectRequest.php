@@ -15,4 +15,14 @@ class StoreProjectRequest extends FormRequest
             'team_id' => 'required|integer|exists:teams,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'code.max' => 'code must not be greater than 10 characters',
+            'name.max' => 'name must not be greater than 100 characters',
+            'team.exists' => 'Team not found',
+        ];
+    }
 }
