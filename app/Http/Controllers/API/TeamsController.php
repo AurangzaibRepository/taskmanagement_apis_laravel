@@ -25,12 +25,8 @@ class TeamsController extends Controller
         return getResponse(true, $data);
     }
 
-    public function listing(
-        TeamListingRequest $request,
-        int $pageNumber,
-        string $code = '',
-        string $name = ''
-    ): JsonResponse {
+    public function listing(TeamListingRequest $request): JsonResponse
+    {
         $data = $this->team->getListing($request);
 
         return getResponse(true, $data);
