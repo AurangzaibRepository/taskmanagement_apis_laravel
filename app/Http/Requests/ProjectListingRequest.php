@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProjectListingRequest extends FormRequest
 {
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'team_id' => $this->route('team_id'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
