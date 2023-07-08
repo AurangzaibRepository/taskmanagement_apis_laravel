@@ -110,8 +110,8 @@ class Project extends Model
             $query = $query->where('name', 'like', "%{$request->name}%");
         }
 
-        if ($request->filled('teamId')) {
-            $query = $query->where('team_id', $request->teamId);
+        if ($request->filled('team_id')) {
+            $query = $query->where('team_id', $request->team_id);
         }
 
         return $query;
