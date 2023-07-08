@@ -12,7 +12,7 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|max:10',
+            'code' => 'required|max:10|unique:projects',
             'name' => 'required|max:100',
             'description' => 'required',
             'team_id' => 'required|integer|exists:teams,id',
