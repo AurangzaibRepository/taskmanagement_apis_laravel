@@ -7,6 +7,7 @@ use App\Http\Requests\ProjectAllRequest;
 use App\Http\Requests\ShowProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Requests\ProjectListingRequest;
 use App\Models\Project;
 use Illuminate\Http\JsonResponse;
 
@@ -27,7 +28,13 @@ class ProjectsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function listing()
+    public function listing(
+        ProjectListingRequest $request,
+        int $pageNumber,
+        string $code,
+        string $name,
+        int $teamId,
+    ): JsonRespone
     {
     }
 
