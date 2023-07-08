@@ -65,8 +65,9 @@ class Project extends Model
 
     public function saveRecord(array $data): array
     {
-        $data['id'] = $this->create($data);
+        $project = $this->create($data);
+        $response['id'] = $project->id;
 
-        return $data;
+        return $response;
     }
 }
