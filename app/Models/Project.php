@@ -70,4 +70,8 @@ class Project extends Model
 
         return $response;
     }
+
+    public function updateRecord(int $id, array $data): void
+    {
+    }
 }
