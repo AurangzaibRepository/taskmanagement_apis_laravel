@@ -86,5 +86,26 @@ class Project extends Model
         $response = [
             'page_number' => $request->pageNumber,
         ];
+
+        $query = $this->applyFilters($request);
+    }
+
+    private function applyFilters(Request $request): Builder
+    {
+        $query = $this->latest('id');
+
+        if ($request->filled('code')) {
+            $query = $query->where('code', 'like', "%{$request->code}%");
+        }
+
+        if ($reqeust->filled('name')) {
+            $query = $query->where('name', 'like', "%{$request->name}%");
+        }
+
+        if ($request->filled('teamId')) {
+            $query = $query->where('team_id', $request->teamId);
+        }
+
+        return $query;
     }
 }
