@@ -100,11 +100,14 @@ class Team extends Model
         return Arr::first($data);
     }
 
-    public function saveRecord(Request $request): void
+    public function saveRecord(Request $request): array
     {
         $this->saveFile($request);
 
-        $this->create($request->all());
+        $team = $this->create($request->all());
+        $response['id'] = $team->id;
+
+        return $response;
     }
 
     public function updateRecord(Request $request): void
