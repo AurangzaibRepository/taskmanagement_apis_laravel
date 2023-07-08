@@ -43,6 +43,9 @@ class ProjectsController extends Controller
      */
     public function show(ShowProjectRequest $request, string $id)
     {
+        $data = $this->project->getData($id);
+
+        return getResponse(true, $data);
     }
 
     /**
