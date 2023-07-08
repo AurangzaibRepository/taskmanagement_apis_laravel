@@ -82,13 +82,13 @@ class Category extends Model
     public function getListing(Request $request): array
     {
         $response = [
-            'page_number' => $page_number,
+            'page_number' => $request->pageNumber,
         ];
 
         $query = $this->applyFilters($request);
         $response['records_count'] = $query->count();
         $limit = config('app.page_length');
-        $offset = ($request->page_number * $limit) - $limit;
+        $offset = ($request->pageNumber * $limit) - $limit;
         $response['page_count'] = ceil($response['records_count'] / $limit);
 
         $response['records'] = applyLimitOffset($query, $limit, $offset);
@@ -102,6 +102,10 @@ class Category extends Model
 
         if ($request->filled('name')) {
             $query = $query->where('name', 'like', "%{$request->name}%");
+        }
+
+        if ($request->filled('status')) {
+            $query = $query->where('status', $request->status);
         }
 
         return $query;
