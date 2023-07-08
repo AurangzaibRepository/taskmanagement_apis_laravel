@@ -9,7 +9,6 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -57,6 +56,9 @@ class ProjectsController extends Controller
      */
     public function update(UpdateProjectRequest $request, string $id)
     {
+        $this->project->updateRecord($id, $request->all());
+
+        return getResponse(true, null, 'Project updated successfully');
     }
 
     /**
