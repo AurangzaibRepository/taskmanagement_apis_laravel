@@ -12,7 +12,7 @@ class CategoryListingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page_number' => 'required|integer',
+            'pageNumber' => 'required|integer',
         ];
     }
 
