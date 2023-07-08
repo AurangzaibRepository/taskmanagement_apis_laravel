@@ -24,6 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
+            'unique' => ':attribute already exists',
             'code.max' => 'code must not be greater than 10 characters',
             'name.max' => 'name must not be greater than 100 characters',
             'team_id.exists' => 'Team not found',
