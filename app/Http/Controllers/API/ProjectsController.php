@@ -36,7 +36,9 @@ class ProjectsController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $this->project->saveRecord($request->all());
+
+        return getResponse(true, null, 'Project added successfully');
     }
 
     /**
