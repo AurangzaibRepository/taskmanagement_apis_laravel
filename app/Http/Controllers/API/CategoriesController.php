@@ -50,9 +50,9 @@ class CategoriesController extends Controller
     public function store(StoreCategoryRequest $request): JsonResponse
     {
         try {
-            $this->category->saveRecord($request->all());
+            $data = $this->category->saveRecord($request->all());
 
-            return getResponse(true, null, 'Category added successfully');
+            return getResponse(true, $data, 'Category added successfully');
         } catch (Exception $exception) {
             report($exception);
 
