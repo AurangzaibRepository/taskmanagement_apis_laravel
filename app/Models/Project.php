@@ -63,7 +63,10 @@ class Project extends Model
         return Arr::first($data);
     }
 
-    public function saveRecord(array $data): void
+    public function saveRecord(array $data): array
     {
+        $data['id'] = $this->create($data);
+
+        return $data;
     }
 }
