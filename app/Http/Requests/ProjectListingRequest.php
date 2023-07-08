@@ -31,4 +31,12 @@ class ProjectListingRequest extends FormRequest
             'team_id.exists' => 'Team not found',
         ];
     }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
+    }
 }
