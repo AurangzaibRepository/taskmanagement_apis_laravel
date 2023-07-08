@@ -13,4 +13,12 @@ class ProjectListingRequest extends FormRequest
             'team_id' => 'nullable|integer|exists:teams,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'team_id.exists' => 'Team not found',
+        ];
+    }
 }
