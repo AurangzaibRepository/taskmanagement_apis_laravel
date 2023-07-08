@@ -12,7 +12,7 @@ class ProjectListingRequest extends FormRequest
     public function prepareForValidation(): void
     {
         $this->merge([
-            'team_id' => $this->route('team_id'),
+            'team_id' => $this->route('teamId'),
         ]);
     }
 
