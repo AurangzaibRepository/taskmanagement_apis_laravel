@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class Category extends Model
 {
@@ -78,16 +79,16 @@ class Category extends Model
         return $data;
     }
 
-    public function getListing(int $pageNumber, string $name): array
+    public function getListing(Request $request): array
     {
         $response = [
-            'page_number' => $pageNumber,
+            'page_number' => $page_number,
         ];
 
-        $query = $this->applyFilters($name);
+        $query = $this->applyFilters($request);
         $response['records_count'] = $query->count();
         $limit = config('app.page_length');
-        $offset = ($pageNumber * $limit) - $limit;
+        $offset = ($request->page_number * $limit) - $limit;
         $response['page_count'] = ceil($response['records_count'] / $limit);
 
         $response['records'] = applyLimitOffset($query, $limit, $offset);
@@ -95,12 +96,12 @@ class Category extends Model
         return $response;
     }
 
-    private function applyFilters(string $name): Builder
+    private function applyFilters(Request $request): Builder
     {
         $query = $this->orderBy('name');
 
-        if ($name !== null) {
-            $query = $query->where('name', 'like', "%{$name}%");
+        if ($request->filled('name')) {
+            $query = $query->where('name', 'like', "%{$request->name}%");
         }
 
         return $query;
