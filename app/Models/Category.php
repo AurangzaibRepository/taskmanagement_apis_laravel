@@ -34,9 +34,12 @@ class Category extends Model
         return $this->hasMany(Task::class, 'category_id');
     }
 
-    public function saveRecord(array $data): void
+    public function saveRecord(array $data): array
     {
-        $this->create($data);
+        $category = $this->create($data);
+        $response['id'] = $category->id;
+
+        return $response;
     }
 
     public function updateRecord(int $id, array $data): void
