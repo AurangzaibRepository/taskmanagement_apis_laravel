@@ -28,13 +28,8 @@ class ProjectsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function listing(
-        ProjectListingRequest $request,
-        int $pageNumber,
-        string $code = '',
-        string $name = '',
-        int $teamId = 0,
-    ): JsonRespone {
+    public function listing(ProjectListingRequest $request): JsonRespone 
+    {
         $data = $this->project->getListing($request);
 
         return getResponse(true, $data);
