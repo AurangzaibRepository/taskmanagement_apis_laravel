@@ -20,6 +20,7 @@ class ProjectListingRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
             'team_id.exists' => 'Team not found',
         ];
