@@ -47,5 +47,9 @@ class Project extends Model
 
     public function getData(int $id): array
     {
+        $data = $this->where('id', $id)
+                    ->with(['team', 'tasks'])
+                    ->get()
+                    ->toArray();
     }
 }
