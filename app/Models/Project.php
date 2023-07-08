@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Database\Eloquent\Builder;
 
 class Project extends Model
 {
@@ -88,6 +88,14 @@ class Project extends Model
         ];
 
         $query = $this->applyFilters($request);
+        $response['records_count'] = $query->count();
+        $pageLength = config('app.page_length');
+        $offset = ($request->pageNumber * $pageLength) - $pageLength;
+        $response['page_count'] = ceil($response['records_count'] / $pageLength);
+
+        $response['records'] = applyLimitOffset($query, $pageLength, $offset);
+
+        return $response;
     }
 
     private function applyFilters(Request $request): Builder
