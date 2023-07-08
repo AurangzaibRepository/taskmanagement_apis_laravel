@@ -9,23 +9,17 @@ use Illuminate\Http\JsonResponse;
 
 class CategoryListingRequest extends FormRequest
 {
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'pageNumber' => $this->route('pageNumber'),
-        ]);
-    }
-
     public function rules(): array
     {
         return [
-            'pageNumber' => 'integer',
+            'page_number' => 'required|integer',
         ];
     }
 
     public function messages(): array
     {
         return [
+            'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
         ];
     }
