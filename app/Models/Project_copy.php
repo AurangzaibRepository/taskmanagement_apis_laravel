@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 
-class Project extends Model
+class Project_copy extends Model
 {
     use HasFactory;
 
@@ -23,13 +23,6 @@ class Project extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-    ];
-
-    protected $fillable = [
-        'code',
-        'name',
-        'description',
-        'team_id',
     ];
 
     public function tasks(): HasMany
@@ -56,6 +49,7 @@ class Project extends Model
     public function getData(int $id): array
     {
         $data = $this->where('id', $id)
+            //->with(['team:id,name', 'tasks:id,project_id,title,status,category_id'])
             ->with(['team:id,name', 'tasks:project_id,title,status,category_id', 'tasks.category:id,name'])
             ->get()
             ->toArray();
