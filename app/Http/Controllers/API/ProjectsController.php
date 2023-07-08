@@ -28,7 +28,7 @@ class ProjectsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function listing(ProjectListingRequest $request): JsonRespone 
+    public function listing(ProjectListingRequest $request): JsonResponse 
     {
         $data = $this->project->getListing($request);
 
