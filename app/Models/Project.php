@@ -83,6 +83,7 @@ class Project extends Model
 
     public function deleteRecord(int $id): void
     {
+        $this->destroy($id);
     }
 
     public function getListing(Request $request): array
