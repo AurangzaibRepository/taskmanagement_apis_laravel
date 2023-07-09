@@ -55,6 +55,10 @@ class Team extends Model
             $team->projects()->each(function ($project) {
                 $project->delete();
             });
+
+            $team->departments()->each(function ($department) {
+                $department->delete();
+            });
         });
     }
 
