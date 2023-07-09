@@ -44,6 +44,16 @@ class Project extends Model
         return $this->belongsTo(Team::class);
     }
 
+    public static function boot(): void
+    {
+        parent::boot();
+        self::deleting(function ($user) {
+            $user->tasks()->each(function ($task) {
+                $task->delete();
+            });
+        });
+    }
+
     public function getAll(int $teamId): array
     {
         $data = $this->where('team_id', $teamId)
