@@ -71,7 +71,7 @@ class ProjectsController extends Controller
      */
     public function destroy(DeleteProjectRequest $request, int $id): JsonResponse
     {
-        $this->project->deleteRecord($int);
+        $this->project->deleteRecord($id);
 
         return getResponse(true, null, 'Project deleted successfully');
     }
