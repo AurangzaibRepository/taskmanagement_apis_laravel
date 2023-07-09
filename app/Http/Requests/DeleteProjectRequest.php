@@ -9,6 +9,7 @@ class DeleteProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'integer|exists:projects',
         ];
     }
 }
