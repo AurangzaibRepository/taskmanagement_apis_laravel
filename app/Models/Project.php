@@ -81,6 +81,10 @@ class Project extends Model
             );
     }
 
+    public function deleteRecord(int $id): void
+    {
+    }
+
     public function getListing(Request $request): array
     {
         $response = [
