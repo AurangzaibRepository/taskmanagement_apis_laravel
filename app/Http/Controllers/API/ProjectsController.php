@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteProjectRequest;
 use App\Http\Requests\ProjectAllRequest;
 use App\Http\Requests\ProjectListingRequest;
 use App\Http\Requests\ShowProjectRequest;
@@ -68,7 +69,7 @@ class ProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(DeleteProjectRequest $request, int $id): JsonResponse
     {
     }
 }
