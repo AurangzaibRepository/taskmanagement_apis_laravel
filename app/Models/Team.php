@@ -48,7 +48,7 @@ class Team extends Model
         return $this->hasMany(User::class);
     }
 
-    public function boot(): void
+    public static function boot(): void
     {
         parent::boot();
         self::deleting(function ($team) {
