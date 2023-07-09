@@ -48,6 +48,16 @@ class Team extends Model
         return $this->hasMany(User::class);
     }
 
+    public function boot(): void
+    {
+        parent::boot();
+        self::deleting(function ($team) {
+            $team->projects()->each(function ($project) {
+                $project->delete();
+            });
+        });
+    }
+
     public function getListing(Request $request): array
     {
         $response = [
