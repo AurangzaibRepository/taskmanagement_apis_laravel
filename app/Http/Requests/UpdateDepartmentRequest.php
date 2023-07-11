@@ -31,6 +31,7 @@ class UpdateDepartmentRequest extends FormRequest
         return [
             'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
+            'id.exists' => 'Department not found',
             'name.max' => 'name must not be greater than 100 characters',
             'team_id.exists' => 'Team not found',
         ];
