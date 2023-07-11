@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DepartmentAllRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'teamId' => $this->route('teamId'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
