@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class Project extends Model
+class Project_copy2 extends Model
 {
     use HasFactory;
 
@@ -44,6 +44,18 @@ class Project extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    /*
+    public static function boot(): void
+    {
+        parent::boot();
+        self::deleting(function ($user) {
+            $user->tasks()->each(function ($task) {
+                $task->delete();
+            });
+        });
+    }
+    */
 
     public function getAll(int $teamId): array
     {
