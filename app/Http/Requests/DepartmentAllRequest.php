@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonRespone;
+use Illuminate\Http\JsonResponse;
 
 class DepartmentAllRequest extends FormRequest
 {
@@ -29,5 +29,13 @@ class DepartmentAllRequest extends FormRequest
             'integer' => ':attribute must be an integer',
             'teamId.exists' => 'Team not found',
         ];
+    }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
     }
 }
