@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepartmentAllRequest;
+use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\JsonResponse;
 
@@ -21,7 +22,7 @@ class DepartmentsController extends Controller
         return getResponse(true, $data);
     }
 
-    public function store(): JsonResponse
+    public function store(StoreDepartmentRequest $request): JsonResponse
     {
         return getResponse(true, null, 'Department added successfully');
     }
