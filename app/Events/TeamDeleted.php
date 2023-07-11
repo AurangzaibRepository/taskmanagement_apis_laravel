@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Team;
 
 class TeamDeleted
 {
@@ -17,10 +18,9 @@ class TeamDeleted
     /**
      * Create a new event instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public Team $team,
+    ) {}
 
     /**
      * Get the channels the event should broadcast on.
