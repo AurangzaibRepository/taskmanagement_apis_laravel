@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\CategoryDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -51,6 +52,7 @@ class Category extends Model
 
     public function deleteRecord(int $id): void
     {
+        CategoryDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
 
