@@ -36,5 +36,12 @@ class Department extends Model
 
     public function getAll(int $teamId): array
     {
+        $data = $this->oldest('name')
+            ->where('team_id', $teamId)
+            ->select('id', 'name')
+            ->get()
+            ->toArray();
+
+        return $data;
     }
 }
