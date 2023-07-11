@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\ProjectDeleted;
 use App\Events\TeamDeleted;
 
 class DeleteTeamProjects
@@ -19,6 +20,7 @@ class DeleteTeamProjects
     public function handle(TeamDeleted $event): void
     {
         $event->team->projects()->each(function ($project) {
+            ProjectDeleted::dispatch($project);
             $project->delete();
         });
 
