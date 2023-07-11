@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\TeamDeleted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteTeamProjects
 {
