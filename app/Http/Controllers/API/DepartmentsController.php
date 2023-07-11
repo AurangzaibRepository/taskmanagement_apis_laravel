@@ -28,4 +28,9 @@ class DepartmentsController extends Controller
 
         return getResponse(true, $data, 'Department added successfully');
     }
+
+    public function update(int $id): JsonResponse
+    {
+        return getResponse(true, null, 'Department updated successfully');
+    }
 }
