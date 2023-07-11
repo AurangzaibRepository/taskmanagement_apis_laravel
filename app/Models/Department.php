@@ -50,4 +50,12 @@ class Department extends Model
 
         return $data;
     }
+
+    public function saveRecord(array $data): array
+    {
+        $department = $this->create($data);
+        $response['id'] = $department->id;
+
+        return $response;
+    }
 }
