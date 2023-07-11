@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ProjectDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -44,6 +45,7 @@ class Project extends Model
         return $this->belongsTo(Team::class);
     }
 
+    /*
     public static function boot(): void
     {
         parent::boot();
@@ -53,6 +55,7 @@ class Project extends Model
             });
         });
     }
+    */
 
     public function getAll(int $teamId): array
     {
@@ -93,6 +96,7 @@ class Project extends Model
 
     public function deleteRecord(int $id): void
     {
+        ProjectDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
 
