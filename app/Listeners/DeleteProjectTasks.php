@@ -21,6 +21,8 @@ class DeleteProjectTasks
      */
     public function handle(ProjectDeleted $event): void
     {
-        //
+        $event->project->tasks()->each(function ($task) {
+            $task->delete();
+        });
     }
 }
