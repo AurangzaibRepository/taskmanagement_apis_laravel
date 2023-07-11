@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepartmentAllRequest;
 use App\Models\Department;
+use Illuminate\Http\JsonResponse;
 
 class DepartmentsController extends Controller
 {
