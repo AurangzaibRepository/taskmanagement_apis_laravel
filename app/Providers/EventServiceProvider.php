@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\CategoryDeleted;
 use App\Events\ProjectDeleted;
 use App\Events\TeamDeleted;
-use App\Events\CategoryDeleted;
+use App\Listeners\DeleteCategoryTasks;
 use App\Listeners\DeleteProjectTasks;
 use App\Listeners\DeleteTeamProjects;
-use App\Listeners\DeleteCategoryTasks;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         TeamDeleted::class => [
             DeleteTeamProjects::class,
+        ],
+        CategoryDeleted::class => [
+            DeleteCategoryTasks::class,
         ],
     ];
 
