@@ -24,6 +24,12 @@ class Department extends Model
         'updated_at',
     ];
 
+    protected $fillable = [
+        'name',
+        'description',
+        'team_id',
+    ];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
