@@ -2,14 +2,11 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
+use App\Models\Team;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Team;
 
 class TeamDeleted
 {
@@ -20,7 +17,8 @@ class TeamDeleted
      */
     public function __construct(
         public Team $team,
-    ) {}
+    ) {
+    }
 
     /**
      * Get the channels the event should broadcast on.
