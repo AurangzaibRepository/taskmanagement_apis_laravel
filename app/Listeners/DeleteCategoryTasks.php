@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\CategoryDeleted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteCategoryTasks
 {
@@ -20,5 +18,8 @@ class DeleteCategoryTasks
      */
     public function handle(CategoryDeleted $event): void
     {
+        $event->category->tasks()->each(function ($task) {
+            $task->delete();
+        });
     }
 }
