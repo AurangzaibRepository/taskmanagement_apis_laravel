@@ -33,4 +33,8 @@ class Department extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function getAll(int $teamId): array
+    {
+    }
 }
