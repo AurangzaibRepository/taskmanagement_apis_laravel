@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (Exception $exception) {
-            return getResponse(false, null, 'Error occurred');
+            return getResponse(false, null, $exception->getMessage());
         });
     }
 }
