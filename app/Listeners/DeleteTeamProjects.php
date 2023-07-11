@@ -13,7 +13,6 @@ class DeleteTeamProjects
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -21,6 +20,12 @@ class DeleteTeamProjects
      */
     public function handle(TeamDeleted $event): void
     {
-        //
+        $event->team->projects()->each(function ($project) {
+            $project->delete();
+        });
+
+        $event->team->departments()->each(function ($department) {
+            $department->delete();
+        });
     }
 }
