@@ -9,6 +9,10 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'integer|exists:departments',
+            'name' => 'required|max:100',
+            'description' => 'required',
+            'team_id' => 'required|integer|exists:teams,id',
         ];
     }
 }
