@@ -32,6 +32,8 @@ class DepartmentsController extends Controller
 
     public function update(UpdateDepartmentRequest $request, int $id): JsonResponse
     {
+        $this->department->updateRecord($request);
+
         return getResponse(true, null, 'Department updated successfully');
     }
 }
