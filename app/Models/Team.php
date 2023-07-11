@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TeamDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,20 +47,6 @@ class Team extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
-    }
-
-    public static function boot(): void
-    {
-        parent::boot();
-        self::deleting(function ($team) {
-            $team->projects()->each(function ($project) {
-                $project->delete();
-            });
-
-            $team->departments()->each(function ($department) {
-                $department->delete();
-            });
-        });
     }
 
     public function getListing(Request $request): array
@@ -136,6 +123,7 @@ class Team extends Model
 
     public function deleteRecord(int $id): void
     {
+        TeamDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
 
