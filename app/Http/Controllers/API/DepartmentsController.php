@@ -20,4 +20,9 @@ class DepartmentsController extends Controller
 
         return getResponse(true, $data);
     }
+
+    public function store(): JsonResponse
+    {
+        return getResponse(true, null, 'Department added successfully');
+    }
 }
