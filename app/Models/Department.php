@@ -62,5 +62,9 @@ class Department extends Model
 
     public function updateRecord(Request $request): void
     {
+        $this->where('id', $request->id)
+            ->update(
+                $request->except(['_method'])
+            );
     }
 }
