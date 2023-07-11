@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepartmentAllRequest;
 use App\Http\Requests\StoreDepartmentRequest;
+use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\JsonResponse;
 
@@ -29,7 +30,7 @@ class DepartmentsController extends Controller
         return getResponse(true, $data, 'Department added successfully');
     }
 
-    public function update(int $id): JsonResponse
+    public function update(UpdateDepartmentRequest $request, int $id): JsonResponse
     {
         return getResponse(true, null, 'Department updated successfully');
     }
