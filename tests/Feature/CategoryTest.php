@@ -29,4 +29,15 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
+
+    public function test_category_details(): void
+    {
+        $response = $this->getJson('/api/categories/1');
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+            ]);
+    }
 }
