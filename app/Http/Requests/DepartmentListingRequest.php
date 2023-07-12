@@ -13,4 +13,13 @@ class DepartmentListingRequest extends FormRequest
             'team_id' => 'integer|exists:teams,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'integer' => ':attribute must be an integer',
+            'team_id.exists' => 'Team not found',
+        ];
+    }
 }
