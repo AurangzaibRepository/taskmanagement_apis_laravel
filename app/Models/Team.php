@@ -30,7 +30,7 @@ class Team extends Model
     protected function logo(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => ($value ? asset("storage/images/teams/{$value}") : null),
+            get: fn (string $value = null) => ($value ? asset("storage/images/teams/{$value}") : null),
         );
     }
 
