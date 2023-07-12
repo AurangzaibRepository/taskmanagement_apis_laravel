@@ -28,6 +28,8 @@ class DepartmentsController extends Controller
 
     public function listing(DepartmentListingRequest $request): JsonResponse
     {
+        $data = $this->department->getListing($request);
+
         getResponse(true, $data);
     }
 
