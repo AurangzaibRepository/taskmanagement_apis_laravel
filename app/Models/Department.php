@@ -94,8 +94,11 @@ class Department extends Model
         ];
 
         $query = $this->applyFilters($request);
+        $response['records_count'] = $query->count();
+
         $limit = config('app.page_length');
         $offset = ($request->page_number * $limit) - $limit;
+        $response['page_count'] = ceil($response['records_count']/$limit);
     }
 
     private function applyFilters(Request $request): Builder
