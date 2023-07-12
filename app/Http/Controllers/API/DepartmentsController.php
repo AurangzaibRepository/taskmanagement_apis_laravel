@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepartmentAllRequest;
+use App\Http\Requests\ShowDepartmentRequest;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Department;
@@ -30,7 +31,7 @@ class DepartmentsController extends Controller
         return getResponse(true, $data, 'Department added successfully');
     }
 
-    public function show(int $id): JsonResponse
+    public function show(ShowDepartentRequest $request, int $id): JsonResponse
     {
         return getResponse(true, $data);
     }
