@@ -12,4 +12,12 @@ class DeleteDepartmentRequest extends FormRequest
             'id' => 'integer|exists:departments',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Department not found',
+        ];
+    }
 }
