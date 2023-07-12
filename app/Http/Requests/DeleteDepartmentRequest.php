@@ -9,6 +9,7 @@ class DeleteDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'integer|exists:departments',
         ];
     }
 }
