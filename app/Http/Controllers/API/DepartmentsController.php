@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteDepartmentRequest;
 use App\Http\Requests\DepartmentAllRequest;
+use App\Http\Requests\DepartmentListingRequest;
 use App\Http\Requests\ShowDepartmentRequest;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
@@ -25,7 +26,7 @@ class DepartmentsController extends Controller
         return getResponse(true, $data);
     }
 
-    public function listing(): JsonResponse
+    public function listing(DepartmentListingRequest $request): JsonResponse
     {
         getResponse(true, $data);
     }
