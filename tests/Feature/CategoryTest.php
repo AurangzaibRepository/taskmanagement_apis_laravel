@@ -16,4 +16,17 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
+
+    public function test_category_listing(): void
+    {
+        $response = $this->postJson('/api/categories/listing', [
+            'pageNumber' => 1,
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+            ]);
+    }
 }
