@@ -85,4 +85,11 @@ class Department extends Model
         DepartmentDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
+
+    public function getListing(Request $request): array
+    {
+        $response = [
+            'page_number' => $request->page_number,
+        ];
+    }
 }
