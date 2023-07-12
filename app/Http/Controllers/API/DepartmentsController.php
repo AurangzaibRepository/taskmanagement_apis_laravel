@@ -25,6 +25,11 @@ class DepartmentsController extends Controller
         return getResponse(true, $data);
     }
 
+    public function listing(): JsonResponse
+    {
+        getResponse(true, $data);
+    }
+
     public function store(StoreDepartmentRequest $request): JsonResponse
     {
         $data = $this->department->saveRecord($request->all());
