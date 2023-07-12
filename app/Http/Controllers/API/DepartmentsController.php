@@ -44,4 +44,9 @@ class DepartmentsController extends Controller
 
         return getResponse(true, null, 'Department updated successfully');
     }
+
+    public function destroy(int $id): JsonResponse
+    {
+        return getResponse(true, null, 'Department deleted successfully');
+    }
 }
