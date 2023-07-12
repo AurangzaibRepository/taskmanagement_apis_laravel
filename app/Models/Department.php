@@ -113,7 +113,7 @@ class Department extends Model
         }
 
         if ($request->filled('team_id')) {
-            $query = $query->where('team_id', request->team_id);
+            $query = $query->where('team_id', $request->team_id);
         }
 
         return $query;
