@@ -78,4 +78,9 @@ class Department extends Model
 
         return Arr::first($data);
     }
+
+    public function deleteRecord(int $id): void
+    {
+        $this->destroy($id);
+    }
 }
