@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\DepartmentDeleted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -81,6 +82,7 @@ class Department extends Model
 
     public function deleteRecord(int $id): void
     {
+        DepartmentDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
 }
