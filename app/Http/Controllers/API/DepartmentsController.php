@@ -30,7 +30,7 @@ class DepartmentsController extends Controller
     {
         $data = $this->department->getListing($request);
 
-        getResponse(true, $data);
+        return getResponse(true, $data);
     }
 
     public function store(StoreDepartmentRequest $request): JsonResponse
