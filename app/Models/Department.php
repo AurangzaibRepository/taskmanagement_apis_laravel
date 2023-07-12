@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Builder;
 
 class Department extends Model
 {
@@ -91,5 +92,22 @@ class Department extends Model
         $response = [
             'page_number' => $request->page_number,
         ];
+
+        $query = $this->applyFilters($request);
+    }
+
+    private function applyFilters(Request $request): Builder
+    {
+        $query = $this->latest('id');
+
+        if ($request->filled('name')) {
+            $query = $query->where('name', 'like', "%{$request->name}%");
+        }
+
+        if ($request->filled('team_id')) {
+            $query = $query->where('team_id', request->team_id);
+        }
+
+        return $query;
     }
 }
