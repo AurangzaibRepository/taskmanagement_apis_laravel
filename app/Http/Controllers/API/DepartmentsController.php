@@ -30,6 +30,11 @@ class DepartmentsController extends Controller
         return getResponse(true, $data, 'Department added successfully');
     }
 
+    public function show(int $id): JsonResponse
+    {
+        return getResponse(true, $data);
+    }
+
     public function update(UpdateDepartmentRequest $request, int $id): JsonResponse
     {
         $this->department->updateRecord($request);
