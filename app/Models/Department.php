@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class Department extends Model
 {
@@ -66,5 +67,15 @@ class Department extends Model
             ->update(
                 $request->except(['_method'])
             );
+    }
+
+    public function getData(int $id): array
+    {
+        $data = $this->where('id', $id)
+            ->with(['team:id,name', 'users:department_id,id,first_name,last_name,email'])
+            ->get()
+            ->toArray();
+
+        return Arr::first($data);
     }
 }
