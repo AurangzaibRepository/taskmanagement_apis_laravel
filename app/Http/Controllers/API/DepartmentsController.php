@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteDepartmentRequest;
 use App\Http\Requests\DepartmentAllRequest;
 use App\Http\Requests\ShowDepartmentRequest;
 use App\Http\Requests\StoreDepartmentRequest;
@@ -45,7 +46,7 @@ class DepartmentsController extends Controller
         return getResponse(true, null, 'Department updated successfully');
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(DeleteDepartmentRequest $request, int $id): JsonResponse
     {
         return getResponse(true, null, 'Department deleted successfully');
     }
