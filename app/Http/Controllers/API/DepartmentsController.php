@@ -33,6 +33,8 @@ class DepartmentsController extends Controller
 
     public function show(ShowDepartmentRequest $request, int $id): JsonResponse
     {
+        $data = $this->department->getData($id);
+
         return getResponse(true, $data);
     }
 
