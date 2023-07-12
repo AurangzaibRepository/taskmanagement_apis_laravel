@@ -48,6 +48,8 @@ class DepartmentsController extends Controller
 
     public function destroy(DeleteDepartmentRequest $request, int $id): JsonResponse
     {
+        $this->department->deleteRecord($id);
+
         return getResponse(true, null, 'Department deleted successfully');
     }
 }
