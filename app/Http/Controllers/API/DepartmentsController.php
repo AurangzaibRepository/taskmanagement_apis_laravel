@@ -31,7 +31,7 @@ class DepartmentsController extends Controller
         return getResponse(true, $data, 'Department added successfully');
     }
 
-    public function show(ShowDepartentRequest $request, int $id): JsonResponse
+    public function show(ShowDepartmentRequest $request, int $id): JsonResponse
     {
         return getResponse(true, $data);
     }
