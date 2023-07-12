@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\DepartmentDeleted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteDepartmentUsers
 {
@@ -20,5 +18,8 @@ class DeleteDepartmentUsers
      */
     public function handle(DepartmentDeleted $event): void
     {
+        $event->department->users()->each(function ($user) {
+            $user->delete();
+        });
     }
 }
