@@ -69,4 +69,15 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
+
+    public function test_category_delete(): void
+    {
+        $response = $this->delete('/api/categories/8');
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+            ]);
+    }
 }
