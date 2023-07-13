@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
@@ -12,9 +13,9 @@ class CategoryTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'status' => true,
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('data')
+            );
     }
 
     public function test_category_listing(): void
