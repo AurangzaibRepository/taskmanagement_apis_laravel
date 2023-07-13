@@ -58,7 +58,7 @@ class CategoryTest extends TestCase
 
     public function test_category_update(): void
     {
-        $response = $this->putJson('/api/categories/6', [
+        $response = $this->putJson('/api/categories/10', [
             'name' => 'Category updated',
             'description' => 'Updated description',
             'status' => 'Inactive',
@@ -66,9 +66,9 @@ class CategoryTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'status' => true,
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
     }
 
     public function test_category_delete(): void
