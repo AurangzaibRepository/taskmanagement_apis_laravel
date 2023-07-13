@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -33,7 +34,8 @@ class CategoryTest extends TestCase
 
     public function test_category_details(): void
     {
-        $response = $this->getJson('/api/categories/1');
+        $categoryId = Category::first()->id;
+        $response = $this->getJson("/api/categories/{$categoryId}");
 
         $response
             ->assertStatus(200)
