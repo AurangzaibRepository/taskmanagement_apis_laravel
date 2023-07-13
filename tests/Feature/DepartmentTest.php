@@ -62,4 +62,22 @@ class DepartmentTest extends TestCase
                 ->hasAll(['data', 'message'])
             );
     }
+
+    public function test_department_update(): void
+    {
+        $departmentId = Department::first()->id;
+        $payload = [
+            'name' => 'Department updated',
+            'description' => 'Department description updated',
+            'team_id' => Team::first()->id,
+        ];
+
+        $response = $this->putJson("/api/departments/{$departmentId}", $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
