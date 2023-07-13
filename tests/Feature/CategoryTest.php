@@ -75,7 +75,8 @@ class CategoryTest extends TestCase
 
     public function test_category_delete(): void
     {
-        $response = $this->deleteJson('/api/categories/16');
+        $categoryId = Category::latest('id')->first()->id;
+        $response = $this->deleteJson("/api/categories/{$categoryId}");
 
         $response
             ->assertStatus(200)
