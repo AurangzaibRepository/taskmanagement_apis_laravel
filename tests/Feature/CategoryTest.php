@@ -54,4 +54,19 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
+
+    public function test_category_update(): void
+    {
+        $response = $this->put('/api/categories/6', [
+            'name' => 'Category updated',
+            'description' => 'Updated description',
+            'status' => 'Inactive',
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+            ]);
+    }
 }
