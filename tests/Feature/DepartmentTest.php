@@ -19,4 +19,17 @@ class DepartmentTest extends TestCase
                 ->has('data')
             );
     }
+
+    public function test_department_listing(): void
+    {
+        $response = $this->postJson('/api/departments/listing', [
+            'page_number' => 1,
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('data')
+            );
+    }
 }
