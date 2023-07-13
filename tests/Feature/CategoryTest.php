@@ -84,12 +84,12 @@ class CategoryTest extends TestCase
 
     public function test_category_change_status(): void
     {
-        $response = $this->postJson('/api/categories/change-status/6/Active');
+        $response = $this->postJson('/api/categories/change-status/17/Active');
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'status' => true,
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
     }
 }
