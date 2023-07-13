@@ -86,7 +86,8 @@ class CategoryTest extends TestCase
 
     public function test_category_change_status(): void
     {
-        $response = $this->postJson('/api/categories/change-status/17/Active');
+        $categoryId = Category::first()->id;
+        $response = $this->postJson("/api/categories/change-status/{$categoryId}/Active");
 
         $response
             ->assertStatus(200)
