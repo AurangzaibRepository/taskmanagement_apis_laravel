@@ -40,4 +40,18 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
+
+    public function test_category_add(): void
+    {
+        $response = $this->postJson('/api/categories', [
+            'name' => 'Category test',
+            'description' => 'Test description',
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+            ]);
+    }
 }
