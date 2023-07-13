@@ -46,10 +46,12 @@ class CategoryTest extends TestCase
 
     public function test_category_add(): void
     {
-        $response = $this->postJson('/api/categories', [
+        $payload = [
             'name' => 'Category test',
-            'description' => 'Test description',
-        ]);
+            'description' => 'Category test description',
+        ];
+
+        $response = $this->postJson('/api/categories', $payload);
 
         $response
             ->assertStatus(200)
