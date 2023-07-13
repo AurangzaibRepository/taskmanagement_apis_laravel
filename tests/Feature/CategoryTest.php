@@ -38,7 +38,7 @@ class CategoryTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
-                - has('data')
+                ->has('data')
             );
     }
 
@@ -51,9 +51,9 @@ class CategoryTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'status' => true,
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll(['data', 'message'])
+            );
     }
 
     public function test_category_update(): void
