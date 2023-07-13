@@ -62,11 +62,14 @@ class CategoryTest extends TestCase
 
     public function test_category_update(): void
     {
-        $response = $this->putJson('/api/categories/10', [
+        $categoryId = Category::latest('id')->first()->id;
+        $payload = [
             'name' => 'Category updated',
-            'description' => 'Updated description',
+            'description' => 'Category description updated',
             'status' => 'Inactive',
-        ]);
+        ];
+
+        $response = $this->putJson("/api/categories/{$categoryId}", $payload);
 
         $response
             ->assertStatus(200)
