@@ -45,4 +45,21 @@ class DepartmentTest extends TestCase
                 ->has('data')
             );
     }
+
+    public function test_department_add(): void
+    {
+        $payload = [
+            'name' => 'Department test',
+            'description' => 'Department test description',
+            'team_id' => Team::first()->id,
+        ];
+
+        $response = $this->postJson('/api/departments', $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll(['data', 'message'])
+            );
+    }
 }
