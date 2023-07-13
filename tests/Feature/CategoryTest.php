@@ -73,13 +73,13 @@ class CategoryTest extends TestCase
 
     public function test_category_delete(): void
     {
-        $response = $this->deleteJson('/api/categories/8');
+        $response = $this->deleteJson('/api/categories/16');
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'status' => true,
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
     }
 
     public function test_category_change_status(): void
