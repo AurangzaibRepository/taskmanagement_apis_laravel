@@ -80,4 +80,16 @@ class DepartmentTest extends TestCase
                 ->has('message')
             );
     }
+
+    public function test_department_delete(): void
+    {
+        $departmentId = Department::latest('id')->first()->id;
+        $response = $this->deleteJson("/api/departments/{$departmentId}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
