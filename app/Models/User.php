@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,13 @@ class User extends Model
         'team_id',
     ];
 
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value, array $attributes) => "{$attributes['first_name']} {$attributes['last_name']}",
+        );
+    }
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
@@ -42,11 +50,11 @@ class User extends Model
     public function getAll(int $teamId, int $departmentId): array
     {
         $data = $this->where('team_id', $teamId)
-                    ->where('department_id', $departmentId)
-                    //->selectRaw('id, concat(first_name, " ", last_name) name')
-                    ->oldest('first_name')
-                    ->get()
-                    ->toArray();
+            ->where('department_id', $departmentId)
+            ->selectRaw('id, concat(first_name, " ", last_name) name')
+            ->oldest('first_name')
+            ->get()
+            ->toArray();
 
         return $data;
     }
