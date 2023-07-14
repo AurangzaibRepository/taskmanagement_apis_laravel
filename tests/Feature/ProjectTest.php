@@ -45,4 +45,23 @@ class ProjectTest extends TestCase
                 ->has('data')
             );
     }
+
+    public function test_project_add(): void
+    {
+        $latestId = Project::latest('id')->first()->id + 1;
+        $payload = [
+            'code' => "P{$latestId}",
+            'name' => "Project{$latestId}",
+            'description' => "Project {$latestId} description",
+            'team_id' => Team::first()->id,
+        ];
+
+        $response = $this->postJson('/api/projects', $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll(['data', 'message'])
+            );
+    }
 }
