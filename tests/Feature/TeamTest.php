@@ -65,12 +65,24 @@ class TeamTest extends TestCase
     {
         $team = Team::first();
         $payload = [
-            'code' => "{$team->code} updated",
-            'name' => "{$team->name} updated",
-            'description' => "{$team->description} updated",
+            'code' => "T{$team->id} updated",
+            'name' => "T{$team->id} updated",
+            'description' => "T{$team->id} updated",
         ];
 
         $response = $this->putJson("/api/teams/{$team->id}", $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
+
+    public function test_team_delete(): void
+    {
+        $teamId = Team::latest('id')->first()->id;
+        $response = $this->deleteJson("/api/teams/{$teamId}");
 
         $response
             ->assertStatus(200)
