@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserAllRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function all(int $teamId, int $departmentId): JsonResponse
-    {
+    public function all(
+        UserAllRequest $request,
+        int $teamId,
+        int $departmentId
+    ): JsonResponse {
     }
 
     /**
