@@ -19,4 +19,17 @@ class ProjectTest extends TestCase
                 ->has('data')
             );
     }
+
+    public function test_project_listing(): void
+    {
+        $response = $this->postJson('/api/projects/listing', [
+            'pageNumber' => 1,
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('data')
+            );
+    }
 }
