@@ -43,4 +43,21 @@ class TeamTest extends TestCase
                 ->has('data')
             );
     }
+
+    public function test_team_add(): void
+    {
+        $recordCount = Team::count() + 1;
+        $payload = [
+            'code' => "T{$recordCount}",
+            'name' => 'Team test',
+            'description' => 'Team test description',
+        ];
+        $response = $this->postJson('/api/teams', $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll(['data', 'message'])
+            );
+    }
 }
