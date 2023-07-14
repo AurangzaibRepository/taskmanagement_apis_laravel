@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Project;
 use App\Models\Team;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
@@ -25,6 +26,18 @@ class ProjectTest extends TestCase
         $response = $this->postJson('/api/projects/listing', [
             'pageNumber' => 1,
         ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('data')
+            );
+    }
+
+    public function test_project_details(): void
+    {
+        $projectId = Project::first()->id;
+        $response = $this->getJson("/api/projects/{$projectId}");
 
         $response
             ->assertStatus(200)
