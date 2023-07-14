@@ -83,4 +83,16 @@ class ProjectTest extends TestCase
                 ->has('message')
             );
     }
+
+    public function test_project_delete(): void
+    {
+        $projectId = Project::latest('id')->first()->id;
+        $response = $this->deleteJson("/api/projects/{$projectId}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
