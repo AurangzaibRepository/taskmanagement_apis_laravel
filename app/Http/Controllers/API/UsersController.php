@@ -23,6 +23,10 @@ class UsersController extends Controller
         int $teamId,
         int $departmentId
     ): JsonResponse {
+
+        $data = $this->user->getAll($teamId, $departmentId);
+
+        return getResponse(true, $data);
     }
 
     /**
