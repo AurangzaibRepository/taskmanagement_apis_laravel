@@ -60,4 +60,22 @@ class TeamTest extends TestCase
                 ->hasAll(['data', 'message'])
             );
     }
+
+    public function test_team_update(): void
+    {
+        $team = Team::first();
+        $payload = [
+            'code' => "{$team->code} updated",
+            'name' => "{$team->name} updated",
+            'description' => "{$team->description} updated",
+        ];
+
+        $response = $this->putJson("/api/teams/{$team->id}", $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
