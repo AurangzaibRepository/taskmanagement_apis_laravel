@@ -9,6 +9,8 @@ class UserAllRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'teamId' => 'integer|exists:teams,id',
+            'departmentId' => 'integer|exists:departments,id',
         ];
     }
 }
