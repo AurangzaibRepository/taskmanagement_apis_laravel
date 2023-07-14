@@ -13,4 +13,13 @@ class UserAllRequest extends FormRequest
             'departmentId' => 'integer|exists:departments,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'teamId.exists' => 'Team not found',
+            'departmentId.exists' => 'Department not found',
+        ];
+    }
 }
