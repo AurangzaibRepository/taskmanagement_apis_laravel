@@ -4,6 +4,7 @@ use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\DepartmentsController;
 use App\Http\Controllers\API\ProjectsController;
 use App\Http\Controllers\API\TeamsController;
+use App\HTtp\Controllers\API\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +39,5 @@ Route::resource('projects', ProjectsController::class);
 Route::get('departments/all/{teamId}', [DepartmentsController::class, 'all']);
 Route::post('departments/listing', [DepartmentsController::class, 'listing']);
 Route::resource('departments', DepartmentsController::class);
+
+Route::resource('users', UsersController::class);
