@@ -22,7 +22,11 @@ class User extends Model
         'last_name',
         'email',
         'phone_number',
+        'password',
         'team_id',
+        'department_id',
+        'picture',
+        'role',
     ];
 
     protected function fullName(): Attribute
@@ -64,5 +68,13 @@ class User extends Model
             ->toArray();
 
         return $data;
+    }
+
+    public function saveRecord(array $data): array
+    {
+        $user = $this->create($data);
+        $response['id'] = $user->id;
+
+        return $response;
     }
 }
