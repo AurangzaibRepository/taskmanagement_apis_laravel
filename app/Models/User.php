@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Model
 {
@@ -30,6 +29,13 @@ class User extends Model
     {
         return Attribute::make(
             get: fn (string $value, array $attributes) => "{$attributes['first_name']} {$attributes['last_name']}",
+        );
+    }
+
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => bcrypt($value),
         );
     }
 
