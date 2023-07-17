@@ -73,7 +73,7 @@ class User extends Model
 
     public function saveRecord(Request $request): array
     {
-        $this->saveFile($request, null);
+        $this->saveFile($request);
 
         $user = $this->create($request->all());
         $response['id'] = $user->id;
@@ -81,9 +81,19 @@ class User extends Model
         return $response;
     }
 
-    private function saveFile(Request $request, int $id = null): void
+    public function updateRecord(Request $request): void
     {
-        if ($id === null) {
+        $this->saveFile($request);
+
+        $user = $this->where('id', $request->id)
+            ->update($request->except(['_method', 'image']));
+    }
+
+    private function saveFile(Request $request): void
+    {
+        $id = $request->id;
+
+        if (! $request->id) {
             $latestUser = $this->latest('id')->first();
             $id = $latestUser->id + 1;
         }
