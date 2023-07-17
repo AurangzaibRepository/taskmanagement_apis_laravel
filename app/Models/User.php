@@ -73,11 +73,26 @@ class User extends Model
 
     public function saveRecord(Request $request): array
     {
-        $this->saveFile($request);
+        $this->saveFile($request, null);
 
         $user = $this->create($request->all());
         $response['id'] = $user->id;
 
         return $response;
+    }
+
+    private function saveFile(Request $request, int $id = null): void
+    {
+        if ($id === null) {
+            $latestUser = $this->latest('id')->first();
+            $id = $latestUser->id + 1;
+        }
+
+        if ($request->hasFile('image')) {
+            $fileName = "{$id}.{$request->image->extension()}";
+            $request->image->storeAs('images/users', $fileName);
+
+            $request->merge(['picture' => $fileName]);
+        }
     }
 }
