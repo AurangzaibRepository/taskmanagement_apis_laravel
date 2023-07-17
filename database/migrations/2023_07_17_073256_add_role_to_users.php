@@ -14,7 +14,7 @@ return new class extends Migration
                 'Admin',
                 'User',
             ])
-            ->default('User');
+                ->default('User');
         });
     }
 
