@@ -19,7 +19,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'required|email|unique:users',
             'phone_number' => 'required',
             'password' => 'required',
-            'team_id' => 'required|integer|exists:team,id',
+            'team_id' => 'required|integer|exists:teams,id',
             'department_id' => 'required|integer|exists:departments,id',
             'picture' => 'nullable|image',
             'role' => [new Enum(UserRoleEnum::class)],
