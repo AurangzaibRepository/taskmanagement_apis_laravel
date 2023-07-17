@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Enums\UserRoleEnum;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreUserRequest extends FormRequest
 {
@@ -38,5 +38,13 @@ class StoreUserRequest extends FormRequest
             'image' => 'picture must be an image file',
             'role' => 'Invalid role',
         ];
+    }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
     }
 }
