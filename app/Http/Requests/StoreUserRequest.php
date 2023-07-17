@@ -22,4 +22,18 @@ class StoreUserRequest extends FormRequest
             'role' => [new Enum(UserRoleEnum::class)],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'max' => ':attribute must not be greater than 50 characters',
+            'email' => 'Invalid email',
+            'email.exists' => 'Email aready exists',
+            'team_id.exists' => 'Team not found',
+            'department_id.exists' => 'Department not found',
+            'image' => 'picture must be an image file',
+            'role' => 'Invalid role',
+        ];
+    }
 }
