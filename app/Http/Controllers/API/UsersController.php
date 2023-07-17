@@ -46,6 +46,9 @@ class UsersController extends Controller
      */
     public function show(ShowUserRequest $request, int $id): JsonReesponse
     {
+        $data = $this->user->getData($id);
+
+        return getResponse(true, $data);
     }
 
     /**
