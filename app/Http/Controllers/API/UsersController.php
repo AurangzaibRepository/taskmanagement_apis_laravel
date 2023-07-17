@@ -35,6 +35,9 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        $data = $this->user->saveRecord($request->all());
+
+        return getResponse(true, $data, 'User added successfully');
     }
 
     /**
