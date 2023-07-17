@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\UserRoleEnum;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\Rules\Enum;
 
 class StoreUserRequest extends FormRequest
 {
@@ -22,7 +20,7 @@ class StoreUserRequest extends FormRequest
             'team_id' => 'required|integer|exists:teams,id',
             'department_id' => 'required|integer|exists:departments,id',
             'picture' => 'nullable|image',
-            'role' => [new Enum(UserRoleEnum::class)],
+            'role' => 'required|in:Admin,User',
         ];
     }
 
