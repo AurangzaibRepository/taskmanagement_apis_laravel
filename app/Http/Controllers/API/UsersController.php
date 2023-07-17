@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserAllRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -54,6 +53,9 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id)
     {
+        $this->user->updateRecord($request);
+
+        return getResponse(true, null, 'User updated successfully');
     }
 
     /**
