@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
         return [
             'first_name' => 'required|max:50',
             'last_name' => 'required|max:50',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'phone_number' => 'required',
             'password' => 'required',
             'team_id' => 'required|integer|exists:team,id',
@@ -29,7 +29,7 @@ class StoreUserRequest extends FormRequest
             'required' => ':attribute is required',
             'max' => ':attribute must not be greater than 50 characters',
             'email' => 'Invalid email',
-            'email.exists' => 'Email aready exists',
+            'email.unique' => 'Email aready exists',
             'team_id.exists' => 'Team not found',
             'department_id.exists' => 'Department not found',
             'image' => 'picture must be an image file',
