@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class User extends Model
 {
@@ -70,9 +71,11 @@ class User extends Model
         return $data;
     }
 
-    public function saveRecord(array $data): array
+    public function saveRecord(Request $request): array
     {
-        $user = $this->create($data);
+        $this->saveFile($request);
+
+        $user = $this->create($request->all());
         $response['id'] = $user->id;
 
         return $response;
