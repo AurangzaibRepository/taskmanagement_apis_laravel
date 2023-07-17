@@ -22,7 +22,7 @@ class UpdateUserRequest extends FormRequest
             'id' => 'integer|exists:users',
             'first_name' => 'required|max:50',
             'last_name' => 'required|max:50',
-            'email' => 'required|email|unique:users|ends_with:gmail.com,laravel.com',
+            'email' => 'required|email|unique:users,email,'.$this->route('user').'|ends_with:gmail.com,laravel.com',
             'phone_number' => 'required',
             'password' => 'required',
             'team_id' => 'required|integer|exists:teams,id',
