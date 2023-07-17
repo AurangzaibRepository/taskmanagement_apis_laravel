@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserAllRequest;
@@ -33,7 +34,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): JsonResponse
     {
         $data = $this->user->saveRecord($request);
 
@@ -43,15 +44,14 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ShowUserRequest $request, int $id): JSonReesponse
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, int $id)
+    public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
         $this->user->updateRecord($request);
 
