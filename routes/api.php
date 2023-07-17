@@ -41,4 +41,5 @@ Route::post('departments/listing', [DepartmentsController::class, 'listing']);
 Route::resource('departments', DepartmentsController::class);
 
 Route::get('users/all/{teamId}/{departmentId}', [UsersController::class, 'all']);
+Route::post('users/listing', [UsersController::class, 'listing']);
 Route::resource('users', UsersController::class);
