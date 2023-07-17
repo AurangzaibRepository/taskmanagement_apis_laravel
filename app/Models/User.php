@@ -89,6 +89,16 @@ class User extends Model
             ->update($request->except(['_method', 'image']));
     }
 
+    public function getData(int $id): array
+    {
+        $data = $this->where('id', $id)
+            ->with(['team:id,name', 'department:id,name', 'tasks:id,title,status,user_id'])
+            ->get()
+            ->toArray();
+
+        return $data;
+    }
+
     private function saveFile(Request $request): void
     {
         $id = $request->id;
