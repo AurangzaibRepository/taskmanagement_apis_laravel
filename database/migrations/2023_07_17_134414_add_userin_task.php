@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreignId('user_id');
+        });
     }
 
     /**
