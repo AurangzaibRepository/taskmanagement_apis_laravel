@@ -19,7 +19,7 @@ class StoreUserRequest extends FormRequest
             'password' => 'required',
             'team_id' => 'required|integer|exists:teams,id',
             'department_id' => 'required|integer|exists:departments,id',
-            'picture' => 'nullable|image',
+            'image' => 'nullable|image',
             'role' => 'required|in:Admin,User',
         ];
     }
