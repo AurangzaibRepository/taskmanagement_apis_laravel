@@ -14,7 +14,7 @@ class StoreUserRequest extends FormRequest
         return [
             'first_name' => 'required|max:50',
             'last_name' => 'required|max:50',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users|ends_with:gmail.com,laravel.com',
             'phone_number' => 'required',
             'password' => 'required',
             'team_id' => 'required|integer|exists:teams,id',
@@ -30,7 +30,7 @@ class StoreUserRequest extends FormRequest
             'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
             'max' => ':attribute must not be greater than 50 characters',
-            'email' => 'Invalid email',
+            'email.email' => 'Invalid email',
             'email.unique' => 'Email aready exists',
             'team_id.exists' => 'Team not found',
             'department_id.exists' => 'Department not found',
