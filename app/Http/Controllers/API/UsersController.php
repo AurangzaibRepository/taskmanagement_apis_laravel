@@ -7,6 +7,7 @@ use App\Http\Requests\ShowUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserAllRequest;
+use App\Http\Requests\UserListingRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -29,6 +30,10 @@ class UsersController extends Controller
         $data = $this->user->getAll($teamId, $departmentId);
 
         return getResponse(true, $data);
+    }
+
+    public function listing(UserListingRequest $request): JsonResponse
+    {
     }
 
     /**
