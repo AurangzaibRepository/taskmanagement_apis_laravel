@@ -34,6 +34,9 @@ class UsersController extends Controller
 
     public function listing(UserListingRequest $request): JsonResponse
     {
+        $data = $this->user->getListing($request);
+
+        return getResponse(true, $data);
     }
 
     /**
