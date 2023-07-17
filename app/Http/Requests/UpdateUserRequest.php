@@ -21,4 +21,21 @@ class UpdateUserRequest extends FormRequest
             'role' => 'required|in:Admin,User',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'User not found',
+            'max' => ':attribute must not be greater than 50 characters',
+            'email.email' => 'Invalid email',
+            'email.unique' => 'email aready exists',
+            'email.ends_with' => 'email must be either from gmail or laravel domain',
+            'team_id.exists' => 'Team not found',
+            'department_id.exists' => 'Department not found',
+            'image' => 'picture must be an image file',
+            'role' => 'Invalid role',
+        ];
+    }
 }
