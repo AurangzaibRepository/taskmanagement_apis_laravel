@@ -44,7 +44,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ShowUserRequest $request, int $id): JsonReesponse
+    public function show(ShowUserRequest $request, int $id): JsonResponse
     {
         $data = $this->user->getData($id);
 
