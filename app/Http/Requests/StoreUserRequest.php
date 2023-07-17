@@ -30,6 +30,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'required' => ':attribute is required',
+            'integer' => ':attribute must be an integer',
             'max' => ':attribute must not be greater than 50 characters',
             'email' => 'Invalid email',
             'email.unique' => 'Email aready exists',
