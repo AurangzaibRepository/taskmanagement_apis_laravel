@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contract\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 
 class DeleteUserRequest extends FormRequest
 {
