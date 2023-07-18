@@ -136,7 +136,8 @@ class User extends Model
 
     private function applyFilters(Request $request): Builder
     {
-        $query = $this->latest('first_name');
+        $query = $this->oldest('first_name')
+            ->where('role', '!=', 'Admin');
 
         if ($request->filled('email')) {
             $query->where('email', 'like', "%{$request->email}%");
@@ -151,7 +152,7 @@ class User extends Model
         }
 
         if ($request->filled('name')) {
-            $query->where(function($query) {
+            $query->where(function ($query) use ($request) {
                 $query->where('first_name', 'like', "%{$request->name}%")
                     ->orWhere('last_name', 'like', "%{$request->name}%");
             });
