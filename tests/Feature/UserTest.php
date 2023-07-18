@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\Department;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -55,6 +57,7 @@ class UserTest extends TestCase
     {
         $latestUserId = User::latest('id')->first()->id;
         $latestUserId++;
+        Storage:fake('public');
 
         $payload = [
             'first_name' => 'test',
@@ -65,6 +68,7 @@ class UserTest extends TestCase
             'department_id' => Department::first()->id,
             'role' => 'User',
             'password' => bcrypt('123456'),
+            'image' => $file = UploadedFile::fake()->image("{$latestUserId}.jpg"),
         ];
 
         $response = $this->postJson('/api/users', $payload);
@@ -73,5 +77,7 @@ class UserTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->hasAll(['status', 'data', 'message'])
             );
+
+        Storage::disk('public')->assertExists("/images/users/{$latestUserId}.jpg");
     }
 }
