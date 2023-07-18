@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\UserDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -163,6 +164,7 @@ class User extends Model
 
     public function deleteRecord(int $id): void
     {
+        UserDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
 }
