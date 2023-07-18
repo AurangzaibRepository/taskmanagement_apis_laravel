@@ -128,6 +128,10 @@ class User extends Model
 
         $limit = config('app.page_length');
         $offset = ($request->page_number * $limit) - $limit;
+        $response['page_count'] = ceil($response['records_count'] / $limit);
+        $response['records'] = applyLimitOffset($query, $limit, $offset);
+
+        return $response;
     }
 
     private function applyFilters(Request $request): Builder
