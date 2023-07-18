@@ -115,4 +115,11 @@ class User extends Model
             $request->merge(['picture' => $fileName]);
         }
     }
+
+    public function getListing(Request $request): JsonResponse
+    {
+        $response = [
+            'page_number' => $request->page_number,
+        ];
+    }
 }
