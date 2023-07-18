@@ -109,4 +109,16 @@ class UserTest extends TestCase
 
         Storage::disk('public')->assertExists("/images/users/{$user->id}.jpg");
     }
+
+    public function test_user_delete(): void
+    {
+        $user = User::latest('id')->first();
+        $response = $this->deleteJson("/api/users/{$user->id}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
