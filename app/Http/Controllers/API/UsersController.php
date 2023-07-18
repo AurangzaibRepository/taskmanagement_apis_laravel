@@ -75,5 +75,8 @@ class UsersController extends Controller
      */
     public function destroy(DeleteUserRequest $request, int $id): JsonResponse
     {
+        $this->user->deleteRecord($id);
+
+        return getResponse(true, null, 'User deleted successfully');
     }
 }
