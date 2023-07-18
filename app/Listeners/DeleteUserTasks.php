@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\UserDeleted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteUserTasks
 {
@@ -20,5 +18,8 @@ class DeleteUserTasks
      */
     public function handle(UserDeleted $event): void
     {
+        $event->user->tasks()->each(function ($task) {
+            $task->delete();
+        });
     }
 }
