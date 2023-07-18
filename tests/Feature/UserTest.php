@@ -38,4 +38,14 @@ class UserTest extends TestCase
             ->assertJson(fn (AssertableJson $json) => $json->hasAll(['status', 'data'])
             );
     }
+
+    public function test_user_details(): void
+    {
+        $userId = User::first()->id;
+        $response = $this->getJson("/api/users/{$userId}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->hasAll(['status', 'data']));
+    }
 }
