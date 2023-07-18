@@ -117,7 +117,7 @@ class User extends Model
         }
     }
 
-    public function getListing(Request $request): JsonResponse
+    public function getListing(Request $request): array
     {
         $response = [
             'page_number' => $request->page_number,
@@ -150,7 +150,7 @@ class User extends Model
             $query->where('department_id', $request->department_id);
         }
 
-        if ($rqeust->filled('name')) {
+        if ($request->filled('name')) {
             $query->where(function($query) {
                 $query->where('first_name', 'like', "%{$request->name}%")
                     ->orWhere('last_name', 'like', "%{$request->name}%");
