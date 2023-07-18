@@ -141,5 +141,14 @@ class User extends Model
         if ($request->filled('department_id')) {
             $query->where('department_id', $request->department_id);
         }
+
+        if ($rqeust->filled('name')) {
+            $query->where(function($query) {
+                $query->where('first_name', 'like', "%{$request->name}%")
+                    ->orWhere('last_name', 'like', "%{$request->name}%");
+            });
+        }
+
+        return $query;
     }
 }
