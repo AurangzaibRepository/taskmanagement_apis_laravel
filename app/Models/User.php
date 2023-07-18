@@ -160,4 +160,9 @@ class User extends Model
 
         return $query;
     }
+
+    public function deleteRecord(int $id): void
+    {
+        $this->destroy($id);
+    }
 }
