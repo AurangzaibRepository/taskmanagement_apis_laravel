@@ -12,4 +12,12 @@ class DeleteUserRequest extends FormRequest
             'id' => 'integer|exists:users',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'User not found',
+        ];
+    }
 }
