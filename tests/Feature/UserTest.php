@@ -75,9 +75,38 @@ class UserTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson(fn (AssertableJson $json) => $json->hasAll(['status', 'data', 'message'])
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll(['data', 'message'])
             );
 
         Storage::disk('public')->assertExists("/images/users/{$latestUserId}.jpg");
+    }
+
+    public function test_user_update(): void
+    {
+        $user = User::latest('id')->first();
+        Storage::fake('public');
+
+        $payload = [
+            'first_name' => "{$user->first_name}",
+            'last_name' => "{$user->id}",
+            'email' => "user{$user->id}@laravel.com",
+            'phone_number' => '123456',
+            'team_id' => Team::first()->id,
+            'department_id' => Department::first()->id,
+            'role' => 'User',
+            'password' => bcrypt('123456'),
+            'image' => $file = UploadedFile::fake()->image("{$user->id}.jpg"),
+        ];
+
+        $response = $this->putJson("/api/users/{$user->id}", $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+
+        Storage::disk('public')->assertExists("/images/users/{$user->id}.jpg");
     }
 }
