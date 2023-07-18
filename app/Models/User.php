@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Model
 {
@@ -121,5 +122,11 @@ class User extends Model
         $response = [
             'page_number' => $request->page_number,
         ];
+
+        $query = $this->applyFilters($request);
+    }
+
+    private function applyFilters(Request $request): Builder
+    {
     }
 }
