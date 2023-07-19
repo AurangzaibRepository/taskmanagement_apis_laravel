@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\TaskAllRequest;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +22,7 @@ class TasksController extends Controller
         return getResponse(true, $data);
     }
 
-    public function store(): JsonResponse
+    public function store(StoreTaskRequest $request): JsonResponse
     {
     }
 }
