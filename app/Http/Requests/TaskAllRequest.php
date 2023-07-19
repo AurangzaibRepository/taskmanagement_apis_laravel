@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TaskAllRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'projectId' => $this->route('projectId'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
