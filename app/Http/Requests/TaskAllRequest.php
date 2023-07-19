@@ -12,4 +12,12 @@ class TaskAllRequest extends FormRequest
             'projectId' => 'integer|exists:projects,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'projectId.exists' => 'Project not found',
+        ];
+    }
 }
