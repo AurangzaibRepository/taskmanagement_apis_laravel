@@ -9,6 +9,7 @@ class TaskAllRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'projectId' => 'integer|exists:projects,id',
         ];
     }
 }
