@@ -20,4 +20,8 @@ class TasksController extends Controller
 
         return getResponse(true, $data);
     }
+
+    public function store(): JsonResponse
+    {
+    }
 }
