@@ -38,4 +38,15 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function getAll(int $projectId): array
+    {
+        $data = $this->oldest('title')
+            ->where('project_id', $projectId)
+            ->select('id', 'title')
+            ->get()
+            ->toArray();
+
+        return $data;
+    }
 }
