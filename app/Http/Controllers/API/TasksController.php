@@ -4,9 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskAllRequest;
-use Illuminate\Http\JsonResponse;
 use App\Models\Task;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class TasksController extends Controller
 {
@@ -17,5 +16,8 @@ class TasksController extends Controller
 
     public function all(TaskAllRequest $request, int $projectId): JsonResponse
     {
+        $data = $this->task->getAll($projectId);
+
+        return getResponse(true, $data);
     }
 }
