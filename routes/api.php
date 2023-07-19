@@ -37,6 +37,7 @@ Route::get('projects/all/{teamId}', [ProjectsController::class, 'all']);
 Route::post('projects/listing', [ProjectsController::class, 'listing']);
 Route::resource('projects', ProjectsController::class);
 
+Route::get('tasks/all/{projectId}', [TasksController::class, 'all']);
 Route::resource('tasks', TasksController::class);
 
 Route::get('departments/all/{teamId}', [DepartmentsController::class, 'all']);
