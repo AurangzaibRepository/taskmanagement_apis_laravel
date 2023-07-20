@@ -13,6 +13,7 @@ class StoreTaskRequest extends FormRequest
             'description' => 'required',
             'project_id' => 'required|integer|exists:projects,id',
             'category_id' => 'required|integer|exists:categories,id',
+            'user_id' => 'required|integer|exists:users,id',
         ];
     }
 }
