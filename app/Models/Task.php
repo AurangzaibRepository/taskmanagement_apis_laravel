@@ -74,4 +74,14 @@ class Task extends Model
         $this->where('id', $request->id)
             ->update($request->except(['_method']));
     }
+
+    public function getData(int $id): array
+    {
+        $data = $this->where('id', $id)
+                    ->with(['project:id,name', 'category:id,name'])
+                    ->get()
+                    ->toArray();
+
+        return $data;
+    }
 }
