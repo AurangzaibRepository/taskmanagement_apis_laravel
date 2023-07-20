@@ -31,7 +31,7 @@ class ShowTaskRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $Validator): JsonResponse
+    protected function failedValidation(Validator $validator): JsonResponse
     {
         throw new HttpResponseException(getResponse(
             false,
