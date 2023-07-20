@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DestroyTaskRequest;
+use App\Http\Requests\DeleteTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\TaskAllRequest;
 use App\Http\Requests\ShowTaskRequest;
@@ -46,7 +46,7 @@ class TasksController extends Controller
         return getResponse(true, null, 'Task updated successfully');
     }
 
-    public function destroy(DestroyTaskRequest $request, int $id): JsonReponse
+    public function destroy(DeleteTaskRequest $request, int $id): JsonReponse
     {
     }
 }
