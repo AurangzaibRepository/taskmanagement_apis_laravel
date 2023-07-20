@@ -83,9 +83,9 @@ class Task extends Model
     public function getData(int $id): array
     {
         $data = $this->where('id', $id)
-                    ->with(['project:id,name', 'category:id,name'])
-                    ->get()
-                    ->toArray();
+            ->with(['project:id,name', 'category:id,name', 'user:id,first_name,last_name'])
+            ->get()
+            ->toArray();
 
         return $data;
     }
