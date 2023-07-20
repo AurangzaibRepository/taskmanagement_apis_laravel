@@ -46,7 +46,7 @@ class TasksController extends Controller
         return getResponse(true, null, 'Task updated successfully');
     }
 
-    public function destroy(DeleteTaskRequest $request, int $id): JsonReponse
+    public function destroy(DeleteTaskRequest $request, int $id): JsonResponse
     {
         $this->task->deleteRecord($id);
 
