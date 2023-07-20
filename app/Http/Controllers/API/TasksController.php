@@ -33,6 +33,9 @@ class TasksController extends Controller
 
     public function show(ShowTaskRequest $request, int $id): JsonResponse
     {
+        $data = $this->task->getData($id);
+
+        return getResponse(true, $data);
     }
 
     public function update(UpdateTaskRequest $request, int $id): JsonResponse
