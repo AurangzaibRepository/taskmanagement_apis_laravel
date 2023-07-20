@@ -30,4 +30,12 @@ class DestroyTaskRequest extends FormRequest
             'id.exists' => 'Task not found',
         ];
     }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        return new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
+    }
 }
