@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 
-class DestroyTaskRequest extends FormRequest
+class DeleteTaskRequest extends FormRequest
 {
     protected function prepareForValidation(): void
     {
