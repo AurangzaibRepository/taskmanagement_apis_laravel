@@ -31,5 +31,9 @@ class TasksController extends Controller
     }
 
     public function update(UpdateTaskRequest $request, int $id): JsonRespone
-    {}
+    {
+        $this->task->updateRecord($request);
+
+        return getResponse(true, null, 'Task updated successfuly');
+    }
 }
