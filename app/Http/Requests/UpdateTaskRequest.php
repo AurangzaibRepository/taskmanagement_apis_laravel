@@ -20,4 +20,18 @@ class UpdateTaskRequest extends FormRequest
             'status' => [new Enum(TaskStatusEnum::class)],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Task not found',
+            'title.max' => 'title must not be greater than 80 characters',
+            'project_id.exists' => 'Project not found',
+            'category_id.exists' => 'Category not found',
+            'user_id.exists' => 'User not found',
+            'status' => 'Invalid status',
+        ];
+    }
 }
