@@ -58,4 +58,13 @@ class Task extends Model
 
         return $data;
     }
+
+    public function saveRecord(array $data): array
+    {
+        $task = $this->create($data);
+
+        $response['id'] = $task->id;
+
+        return $response;
+    }
 }
