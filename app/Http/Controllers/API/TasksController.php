@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\TaskAllRequest;
+use App\Http\Requests\ShowTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +31,7 @@ class TasksController extends Controller
         return getResponse(true, $data);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(ShowTaskRequest $request, int $id): JsonResponse
     {
     }
 
