@@ -28,4 +28,7 @@ class TasksController extends Controller
 
         return getResponse(true, $data);
     }
+
+    public function update(int $id): JsonRespone
+    {}
 }
