@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class Task extends Model
 {
@@ -87,6 +88,6 @@ class Task extends Model
             ->get()
             ->toArray();
 
-        return $data;
+        return Arr::first($data);
     }
 }
