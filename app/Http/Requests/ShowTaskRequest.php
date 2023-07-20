@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 
 class ShowTaskRequest extends FormRequest
@@ -29,5 +29,13 @@ class ShowTaskRequest extends FormRequest
             'integer' => ':attribute must be an integer',
             'id.exists' => 'Task not found',
         ];
+    }
+
+    protected function failedValidation(Validator $Validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
     }
 }
