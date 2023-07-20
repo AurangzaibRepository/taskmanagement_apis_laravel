@@ -33,7 +33,7 @@ class DeleteTaskRequest extends FormRequest
 
     protected function failedValidation(Validator $validator): JsonResponse
     {
-        return new HttpResponseException(getResponse(
+        throw new HttpResponseException(getResponse(
             false,
             $validator->messages()->all(),
         ));
