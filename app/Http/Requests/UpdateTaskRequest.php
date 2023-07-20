@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use App\Enums\TaskStatusEnum;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateTaskRequest extends FormRequest
 {
@@ -43,5 +43,13 @@ class UpdateTaskRequest extends FormRequest
             'user_id.exists' => 'User not found',
             'status' => 'Invalid status',
         ];
+    }
+
+    public function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
     }
 }
