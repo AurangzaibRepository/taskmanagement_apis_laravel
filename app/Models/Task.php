@@ -24,6 +24,15 @@ class Task extends Model
         'updated_at',
     ];
 
+    protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'project_id',
+        'category_id',
+        'user_id',
+    ];
+
     public function images(): HasMany
     {
         return $this->hasMany(TaskImage::class, 'task_id');
