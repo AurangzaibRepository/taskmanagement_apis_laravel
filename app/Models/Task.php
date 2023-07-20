@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class Task extends Model
 {
@@ -66,5 +67,11 @@ class Task extends Model
         $response['id'] = $task->id;
 
         return $response;
+    }
+
+    public function updateRecord(Request $request): void
+    {
+        $this->where('id', $request->id)
+            ->update($request->all());
     }
 }
