@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DestroyTaskRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'id' => $this->route('task'),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
