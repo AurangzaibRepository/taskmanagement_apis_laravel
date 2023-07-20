@@ -30,7 +30,7 @@ class TasksController extends Controller
         return getResponse(true, $data);
     }
 
-    public function update(UpdateTaskRequest $request, int $id): JsonRespone
+    public function update(UpdateTaskRequest $request, int $id): JsonResponse
     {
         $this->task->updateRecord($request);
 
