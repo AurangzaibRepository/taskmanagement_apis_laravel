@@ -34,6 +34,6 @@ class TasksController extends Controller
     {
         $this->task->updateRecord($request);
 
-        return getResponse(true, null, 'Task updated successfuly');
+        return getResponse(true, null, 'Task updated successfully');
     }
 }
