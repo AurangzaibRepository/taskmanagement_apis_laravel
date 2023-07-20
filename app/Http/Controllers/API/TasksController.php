@@ -44,4 +44,8 @@ class TasksController extends Controller
 
         return getResponse(true, null, 'Task updated successfully');
     }
+
+    public function destroy(int $id): JsonReponse
+    {
+    }
 }
