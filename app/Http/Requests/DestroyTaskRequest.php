@@ -12,4 +12,12 @@ class DestroyTaskRequest extends FormRequest
             'id' => 'integer|exists:tasks',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'id.exists' => 'Task not found',
+        ];
+    }
 }
