@@ -5,7 +5,7 @@ use App\Http\Controllers\API\DepartmentsController;
 use App\Http\Controllers\API\ProjectsController;
 use App\Http\Controllers\API\TasksController;
 use App\Http\Controllers\API\TeamsController;
-use App\HTtp\Controllers\API\UsersController;
+use App\Http\Controllers\API\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
