@@ -72,6 +72,6 @@ class Task extends Model
     public function updateRecord(Request $request): void
     {
         $this->where('id', $request->id)
-            ->update($request->all());
+            ->update($request->except(['_method']));
     }
 }
