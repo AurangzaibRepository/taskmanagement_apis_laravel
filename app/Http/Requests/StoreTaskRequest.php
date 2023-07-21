@@ -20,6 +20,7 @@ class StoreTaskRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id',
             'user_id' => 'required|integer|exists:users,id',
             'status' => [new Enum(TaskStatusEnum::class)],
+            'images' => 'nullable|array',
         ];
     }
 
