@@ -105,4 +105,17 @@ class TaskTest extends TestCase
                 ->has('message')
             );
     }
+
+    public function test_task_delete(): void
+    {
+        $latestTask = Task::latest('id')->first();
+
+        $response = $this->deleteJson("/api/tasks/{$latestTask->id}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
