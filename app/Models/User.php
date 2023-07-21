@@ -40,6 +40,13 @@ class User extends Model
         );
     }
 
+    protected function picture(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value = null) => ($value ? asset("storage/images/users/{$value}") : null),
+        );
+    }
+
     protected function password(): Attribute
     {
         return Attribute::make(
