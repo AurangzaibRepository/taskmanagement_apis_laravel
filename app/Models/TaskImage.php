@@ -23,6 +23,11 @@ class TaskImage extends Model
         'updated_at',
     ];
 
+    protected $fillable = [
+        'image',
+        'task_id',
+    ];
+
     public function task(): BelongsTo
     {
         return $this->belongsTo(Task::class, 'task_id');
