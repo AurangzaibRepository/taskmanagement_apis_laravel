@@ -67,9 +67,10 @@ class Task extends Model
         return $data;
     }
 
-    public function saveRecord(array $data): array
+    public function saveRecord(Request $reqeust): array
     {
-        $task = $this->create($data);
+        $task = $this->create($request->all());
+        $this->saveImages($request);
 
         $response['id'] = $task->id;
 
