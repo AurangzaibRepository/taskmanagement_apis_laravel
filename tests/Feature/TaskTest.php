@@ -84,4 +84,25 @@ class TaskTest extends TestCase
                 ->hasAll(['data', 'message'])
             );
     }
+
+    public function test_task_update(): void
+    {
+        $latestTask = Task::latest('id')->first();
+        $payload = [
+            'title' => "Task{$latestTask->id} updated",
+            'description' => "Task{$latestTask->id} description updated",
+            'status' => 'In progress',
+            'project_id' => Project::first()->id,
+            'category_id' => Category::first()->id,
+            'user_id' => User::first()->id,
+        ];
+
+        $response = $this->putJson("/api/tasks/{$latestTask->id}", $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
