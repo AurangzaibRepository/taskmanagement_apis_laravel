@@ -80,9 +80,9 @@ class Task extends Model
     public function updateRecord(Request $request): void
     {
         $this->where('id', $request->id)
-            ->update($request->except(['_method']));
+            ->update($request->except(['_method', 'images']));
 
-        $this->saveImages($request->images, $request->id);
+        $this->saveImages($request, $request->id);
     }
 
     public function getData(int $id): array
@@ -151,7 +151,7 @@ class Task extends Model
         }
 
         $imageCount = TaskImage::where('task_id', $taskId)
-                        ->count();
+            ->count();
 
         foreach ($request->images as $image) {
             $imageCount++;
