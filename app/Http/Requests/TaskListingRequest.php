@@ -17,4 +17,15 @@ class TaskListingRequest extends FormRequest
             'status' => [new Enum(TaskStatusEnum::class)],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'integer' => ':attribute must be an integer',
+            'project_id.exists' => 'Project not found',
+            'category_id.exists' => 'Category not found',
+            'user_id.exists' => 'User not found',
+            'status' => 'Invalid status',
+        ];
+    }
 }
