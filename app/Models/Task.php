@@ -126,11 +126,11 @@ class Task extends Model
             $query = $query->where('project_id', $request->project_id);
         }
 
-        if ($reqeust->filled('category_id')) {
+        if ($request->filled('category_id')) {
             $query = $query->where('category_id', $request->category_id);
         }
 
-        if ($query->filled('user_id')) {
+        if ($request->filled('user_id')) {
             $query = $query->where('user_id', $request->user_id);
         }
 
