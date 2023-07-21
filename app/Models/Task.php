@@ -95,4 +95,11 @@ class Task extends Model
     {
         $this->destroy($id);
     }
+
+    public function getListing(Request $request): array
+    {
+        $response = [
+            'page_number' => $request->page_number,
+        ];
+    }
 }
