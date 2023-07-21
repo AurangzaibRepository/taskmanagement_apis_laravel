@@ -81,6 +81,8 @@ class Task extends Model
     {
         $this->where('id', $request->id)
             ->update($request->except(['_method']));
+
+        $this->saveImages($request->images, $request->id);
     }
 
     public function getData(int $id): array
@@ -148,8 +150,12 @@ class Task extends Model
             return;
         }
 
-        foreach ($request->images as $key => $image) {
-            $fileName = "{$taskId}image-{$key}.{$image->extension()}";
+        $imageCount = TaskImage::where('task_id', $taskId)
+                        ->count();
+
+        foreach ($request->images as $image) {
+            $imageCount++;
+            $fileName = "{$taskId}image-{$imageCount}.{$image->extension()}";
             $image->storeAs('images/tasks', $fileName);
 
             TaskImage::create([
