@@ -37,7 +37,7 @@ class TasksController extends Controller
     {
         $data = $this->task->saveRecord($request->all());
 
-        return getResponse(true, $data);
+        return getResponse(true, $data, 'Task added successfully');
     }
 
     public function show(ShowTaskRequest $request, int $id): JsonResponse
