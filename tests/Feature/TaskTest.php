@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
@@ -38,6 +39,27 @@ class TaskTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
                 ->hasAll(['data.page_number', 'data.records_count', 'data.records'])
+            );
+    }
+
+    public function test_task_details(): void
+    {
+        $taskId = Task::first()->id;
+        $response = $this->getJson("/api/tasks/{$taskId}");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->hasAll([
+                    'data.id',
+                    'data.title',
+                    'data.description',
+                    'data.status',
+                    'data.project_id',
+                    'data.category_id',
+                    'data.user_id',
+                ])
+                ->etc()
             );
     }
 }
