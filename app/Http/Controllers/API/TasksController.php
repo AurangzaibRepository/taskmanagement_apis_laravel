@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\TaskAllRequest;
+use App\Http\Requests\TaskListingRequest;
 use App\Http\Requests\ShowTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
@@ -25,7 +26,7 @@ class TasksController extends Controller
         return getResponse(true, $data);
     }
 
-    public function listing(): JsonResponse
+    public function listing(TaskListingRequest $request): JsonResponse
     {
     }
 
