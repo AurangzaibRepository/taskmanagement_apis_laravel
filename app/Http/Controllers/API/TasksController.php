@@ -28,6 +28,9 @@ class TasksController extends Controller
 
     public function listing(TaskListingRequest $request): JsonResponse
     {
+        $data = $this->task->getListing($request);
+
+        return getResponse(true, $data);
     }
 
     public function store(StoreTaskRequest $request): JsonResponse
