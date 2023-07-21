@@ -35,7 +35,7 @@ class TasksController extends Controller
 
     public function store(StoreTaskRequest $request): JsonResponse
     {
-        $data = $this->task->saveRecord($request->all());
+        $data = $this->task->saveRecord($request);
 
         return getResponse(true, $data, 'Task added successfully');
     }
