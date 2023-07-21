@@ -25,6 +25,7 @@ class TaskListingRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'required' => ':attribute is required',
             'integer' => ':attribute must be an integer',
             'project_id.exists' => 'Project not found',
             'category_id.exists' => 'Category not found',
