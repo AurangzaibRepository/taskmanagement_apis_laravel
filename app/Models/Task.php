@@ -67,10 +67,10 @@ class Task extends Model
         return $data;
     }
 
-    public function saveRecord(Request $reqeust): array
+    public function saveRecord(Request $request): array
     {
         $task = $this->create($request->all());
-        $this->saveImages($request);
+        $this->saveImages($request, $task->id);
 
         $response['id'] = $task->id;
 
@@ -140,5 +140,22 @@ class Task extends Model
         }
 
         return $query;
+    }
+
+    private function saveImages(Request $request, int $taskId): void
+    {
+        if (! $request->images) {
+            return;
+        }
+
+        foreach ($request->images as $key => $image) {
+            $fileName = "{$taskId}image-{$key}.{$image->extension()}";
+            $image->storeAs('images/tasks', $fileName);
+
+            TaskImage::create([
+                'image' => $fileName,
+                'task_id' => $taskId,
+            ]);
+        }
     }
 }
