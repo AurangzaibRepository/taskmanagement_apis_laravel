@@ -108,6 +108,28 @@ class Task extends Model
 
     private function applyFilters(Request $request): Builder
     {
-        $query = $this->latest();
+        $query = $this->latest('id');
+
+        if ($request->filled('title')) {
+            $query = $query->where('title', 'like', "%{$request->title}%");
+        }
+
+        if ($request->filled('project_id')) {
+            $query = $query->where('project_id', $request->project_id);
+        }
+
+        if ($reqeust->filled('category_id')) {
+            $query = $query->where('category_id', $request->category_id);
+        }
+
+        if ($query->filled('user_id')) {
+            $query = $query->where('user_id', $request->user_id);
+        }
+
+        if ($request->filled('status')) {
+            $query = $query->where('status', $request->status);
+        }
+
+        return $query;
     }
 }
