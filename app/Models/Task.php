@@ -107,5 +107,7 @@ class Task extends Model
     }
 
     private function applyFilters(Request $request): Builder
-    {}
+    {
+        $query = $this->latest();
+    }
 }
