@@ -34,6 +34,7 @@ class StoreTaskRequest extends FormRequest
             'category_id.exists' => 'Category not found',
             'user_id.exists' => 'User not found',
             'status' => 'Invalid status',
+            'images' => 'images must be an array',
         ];
     }
 
