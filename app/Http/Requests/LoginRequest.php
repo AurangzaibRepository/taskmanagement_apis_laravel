@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\PasswordRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -13,7 +14,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:users',
-            'password' => 'required',
+            'password' => ['required', new PasswordRule($this->email)],
         ];
     }
 
