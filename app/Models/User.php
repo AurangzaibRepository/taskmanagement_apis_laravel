@@ -19,6 +19,7 @@ class User extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+        'password',
     ];
 
     protected $fillable = [
