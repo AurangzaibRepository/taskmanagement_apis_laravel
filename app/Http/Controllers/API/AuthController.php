@@ -16,5 +16,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
+        $user = User::where('email', $request->email)
+                    ->first();
     }
 }
