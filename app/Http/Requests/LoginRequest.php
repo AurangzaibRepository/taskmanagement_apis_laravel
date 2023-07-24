@@ -21,6 +21,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'required' => ':attribute is required',
+            'email.email' => 'Invalid email',
             'email.exists' => 'Email not found',
         ];
     }
