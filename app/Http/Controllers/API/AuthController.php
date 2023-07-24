@@ -24,6 +24,6 @@ class AuthController extends Controller
             return getResponse(false, ['Invalid credentials']);
         }
 
-        return getResponse(true, $user);
+        return getResponse(true, $user->toArray());
     }
 }
