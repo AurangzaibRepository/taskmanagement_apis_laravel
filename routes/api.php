@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\DepartmentsController;
 use App\Http\Controllers\API\ProjectsController;
@@ -22,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('auth')->group(function() {
+    Route::post('login', [AuthController::class, 'login']);
 });
 
 Route::get('categories/all', [CategoriesController::class, 'all']);
