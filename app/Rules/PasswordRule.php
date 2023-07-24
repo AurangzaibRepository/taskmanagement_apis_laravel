@@ -19,7 +19,11 @@ class PasswordRule implements ValidationRule
         $user = User::where('email', $this->requestEmail)
             ->first();
 
-        if (! Hash::check($attribute['password'], $user->password)) {
+        if (! $user) {
+            return;
+        }
+
+        if (! Hash::check($value, $user->password)) {
             $fail('Invalid credentials');
         }
     }
