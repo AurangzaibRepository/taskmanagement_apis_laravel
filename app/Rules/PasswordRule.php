@@ -16,7 +16,7 @@ class PasswordRule implements ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $user = User::where('email', $this->reqeustEmail)
+        $user = User::where('email', $this->requestEmail)
             ->first();
 
         if (! Hash::check($attribute['password'], $user->password)) {
