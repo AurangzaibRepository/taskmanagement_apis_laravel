@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AuthController_copy extends Controller
 {
     public function __construct(
         private User $user,
@@ -20,11 +20,10 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)
             ->first();
 
-        return getResponse(true, $user->toArray());
-    }
+        if (! Hash::check($request->password, $user->password)) {
+            return getResponse(false, ['Invalid credentials']);
+        }
 
-    public function changePassword(): JsonResponse
-    {
-        return getResponse(true, null, 'Password changed successfully');
+        return getResponse(true, $user->toArray());
     }
 }
