@@ -13,4 +13,12 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'email.exists' => 'Email not found',
+        ];
+    }
 }
