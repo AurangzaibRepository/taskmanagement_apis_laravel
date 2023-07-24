@@ -16,7 +16,7 @@ class ChangePasswordRequest extends FormRequest
         ];
     }
 
-    public function messages(): void
+    public function messages(): array
     {
         return [
             'required' => ':attribute is required',
