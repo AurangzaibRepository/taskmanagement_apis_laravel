@@ -184,4 +184,12 @@ class User extends Model
                 'password' => bcrypt($request->new_password),
             ]);
     }
+
+    public function generateVerificationCode(string $email): void
+    {
+        $this->where('email', $email)
+            ->update([
+                'verification_code' => bcrypt($email),
+            ]);
+    }
 }
