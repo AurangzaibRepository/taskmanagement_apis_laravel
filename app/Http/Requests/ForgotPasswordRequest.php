@@ -19,6 +19,7 @@ class ForgotPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'required' => ':attribute is required',
             'email.email' => 'Invalid email',
             'email.exists' => 'Email not found',
         ];
