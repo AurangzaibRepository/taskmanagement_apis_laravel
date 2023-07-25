@@ -176,4 +176,12 @@ class User extends Model
         UserDeleted::dispatch($this->find($id));
         $this->destroy($id);
     }
+
+    public function updatePassword(Request $request): void
+    {
+        $this->where('email', $request->email)
+            ->update([
+                'password' => bcrypt($request->new_password),
+            ]);
+    }
 }
