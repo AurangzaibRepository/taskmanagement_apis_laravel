@@ -26,6 +26,8 @@ class AuthController extends Controller
 
     public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
+        $this->user->updatePassword($request);
+
         return getResponse(true, null, 'Password changed successfully');
     }
 }
