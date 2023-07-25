@@ -27,4 +27,12 @@ class ChangePasswordRequest extends FormRequest
             'email.exists' => 'Email not found',
         ];
     }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
+    }
 }
