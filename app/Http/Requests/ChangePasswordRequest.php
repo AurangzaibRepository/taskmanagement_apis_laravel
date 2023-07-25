@@ -15,7 +15,7 @@ class ChangePasswordRequest extends FormRequest
         return [
             'email' => 'required|email|exists:users',
             'password' => ['required', new PasswordRule($this->email)],
-            'new_password' => 'required',
+            'new_password' => 'required|different:password',
         ];
     }
 
