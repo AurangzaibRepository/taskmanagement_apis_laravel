@@ -29,4 +29,8 @@ class AuthController extends Controller
 
         return getResponse(true, null, 'Password changed successfully');
     }
+
+    public function forgotPassword(): JsonResponse
+    {
+    }
 }
