@@ -33,5 +33,8 @@ class AuthController extends Controller
 
     public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
     {
+        $this->user->generateVerificationCode($request->email);
+
+        return getResponse(true, null, 'Email sent to your email for verification');
     }
 }
