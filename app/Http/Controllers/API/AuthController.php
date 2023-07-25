@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +31,7 @@ class AuthController extends Controller
         return getResponse(true, null, 'Password changed successfully');
     }
 
-    public function forgotPassword(): JsonResponse
+    public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
     {
     }
 }
