@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\UserDeleted;
+use App\Mail\VerificationEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Model
 {
@@ -187,9 +189,15 @@ class User extends Model
 
     public function generateVerificationCode(string $email): void
     {
+        $verificationCode = bcrypt($email);
+        $user = $this->where('email', $email)->first();
+
         $this->where('email', $email)
             ->update([
-                'verification_code' => bcrypt($email),
+                'verification_code' => $verificationCode,
             ]);
+
+        Mail::to($email)
+            ->send(new VerificationEmail($user));
     }
 }
