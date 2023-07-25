@@ -25,6 +25,7 @@ class ChangePasswordRequest extends FormRequest
             'required' => ':attribute is required',
             'email.email' => 'Invalid email',
             'email.exists' => 'Email not found',
+            'new_password.different' => 'New password cannot be same as current password',
         ];
     }
 
