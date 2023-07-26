@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -36,5 +37,9 @@ class AuthController extends Controller
         $this->user->generateVerificationCode($request->email);
 
         return getResponse(true, null, 'Email sent to your email for verification');
+    }
+
+    public function resetPassword(ResetPasswordRequest $request): JsonResponse
+    {
     }
 }
