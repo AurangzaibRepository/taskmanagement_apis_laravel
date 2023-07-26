@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -15,6 +16,10 @@ class AuthController extends Controller
     public function __construct(
         private User $user,
     ) {
+    }
+
+    public function register(RegisterRequest $request): JsonResponse
+    {
     }
 
     public function login(LoginRequest $request): JsonResponse
