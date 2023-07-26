@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -18,8 +18,11 @@ class AuthController extends Controller
     ) {
     }
 
-    public function register(RegisterRequest $request): JsonResponse
+    public function register(StoreUserRequest $request): JsonResponse
     {
+        $this->user->register($request);
+
+        return getResponse(true, null, 'Registration completed successfully');
     }
 
     public function login(LoginRequest $request): JsonResponse
