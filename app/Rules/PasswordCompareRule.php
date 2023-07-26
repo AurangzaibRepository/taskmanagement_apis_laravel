@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class PasswordCompareRule implements ValidationRule
 {
+    public function __construct($email)
+    {
+        $this->$email = $email;
+    }
+
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
     }
