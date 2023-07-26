@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use App\Models\Team;
 use App\Models\Department;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -49,14 +49,15 @@ class AuthTest extends TestCase
 
     public function test_auth_change_password(): void
     {
+        $latestUser = User::latest('id')->first();
         $payload = [
-            'email' => 'user38@laravel.com',
-            'password' => '12345678',
-            'new_password' => '123456',
+            'email' => $latestUser->email,
+            'password' => '123456',
+            'new_password' => '12345678',
         ];
 
         $response = $this->postJson('/api/auth/change-password', $payload);
-        
+
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
