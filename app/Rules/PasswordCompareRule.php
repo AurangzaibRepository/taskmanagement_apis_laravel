@@ -16,5 +16,11 @@ class PasswordCompareRule implements ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        $user = User::where('email', $email)
+            ->first();
+
+        if (Hash::check($value, $user->password)) {
+            $fail('New password cannot be same as old one');
+        }
     }
 }
