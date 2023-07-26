@@ -14,4 +14,14 @@ class ResetPasswordRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => ':attribute is required',
+            'email.email' => 'Invalid email',
+            'email.exists' => 'email not found',
+            'code.exists' => 'Invalid code',
+        ];
+    }
 }
