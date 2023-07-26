@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request): JsonResponse
     {
-        $this->user->register($request);
+        $this->user->saveRecord($request);
 
         return getResponse(true, null, 'Registration completed successfully');
     }
