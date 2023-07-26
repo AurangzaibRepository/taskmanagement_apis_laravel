@@ -27,4 +27,12 @@ class ResetPasswordRequest extends FormRequest
             'code.exists' => 'Invalid code',
         ];
     }
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(getResponse(
+            false,
+            $validator->messages()->all(),
+        ));
+    }
 }
