@@ -13,7 +13,7 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:users',
-            'code' => 'required|exists:users,code,email'.$this->email,
+            'code' => 'required|exists:users,verification_code,email,'.$this->email,
             'password' => 'required',
         ];
     }
