@@ -61,7 +61,7 @@ class AuthTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
-                ->has('message')
+                ->where('message', 'Password changed successfully')
             );
     }
 
@@ -75,7 +75,25 @@ class AuthTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
-                ->has('message')
+                ->where('message', 'Email sent to your email for verification')
+            );
+    }
+
+    public function test_auth_reset_password(): void
+    {
+        $latestUser = User::latest('id')->first();
+        $payload = [
+            'email' => $latestUser->email,
+            'code' => $latestUser->verification_code,
+            'new_password' => '123456789',
+        ];
+
+        $response = $this->postJson('/api/auth/reset-password', $payload);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->where('message', 'Password reset successfully')
             );
     }
 }
