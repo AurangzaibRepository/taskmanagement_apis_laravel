@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\PasswordCompareRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -14,7 +15,7 @@ class ResetPasswordRequest extends FormRequest
         return [
             'email' => 'required|email|exists:users',
             'code' => 'required|exists:users,verification_code,email,'.$this->email,
-            'new_password' => 'required',
+            'new_password' => ['required', new PasswordCompareRule($this->email)],
         ];
     }
 
