@@ -64,4 +64,18 @@ class AuthTest extends TestCase
                 ->has('message')
             );
     }
+
+    public function test_auth_forgot_password(): void
+    {
+        $latestUser = User::latest('id')->first();
+        $response = $this->postJson('/api/auth/forgot-password', [
+            'email' => $latestUser->email,
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
+                ->has('message')
+            );
+    }
 }
