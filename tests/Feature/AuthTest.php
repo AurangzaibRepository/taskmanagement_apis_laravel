@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use App\Models\Team;
+use App\Models\Department;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -9,17 +12,26 @@ class AuthTest extends TestCase
 {
     public function test_auth_login(): void
     {
+        $latestUserId = User::latest('id')->first()->id;
+        $latestUserId++;
+
+        User::create([
+            'first_name' => 'test',
+            'last_name' => "user{$latestUserId}",
+            'email' => "test_user{$latestUserId}@laravel.com",
+            'phone_number' => '123456',
+            'password' => '123456',
+            'team_id' => Team::first()->id,
+            'department_id' => Department::first()->id,
+            'role' => 'User',
+        ]);
+
         $payload = [
-            'email' => 'user38@laravel.com',
+            'email' => "test_user{$latestUserId}@laravel.com",
             'password' => '123456',
         ];
 
         $response = $this->postJson('/api/auth/login', $payload);
-        $status = $response->decodeResponseJson()['status'];
-
-        if (!$status) {
-            $payload['password'] = '12345678';
-        }
 
         $response
             ->assertStatus(200)
@@ -44,7 +56,7 @@ class AuthTest extends TestCase
         ];
 
         $response = $this->postJson('/api/auth/change-password', $payload);
-
+        
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json->where('status', true)
