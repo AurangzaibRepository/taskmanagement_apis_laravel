@@ -189,12 +189,13 @@ class User extends Model
 
     public function generateVerificationCode(string $email): void
     {
-        $user = $this->where('email', $email)->first();
-
         $this->where('email', $email)
             ->update([
                 'verification_code' => bcrypt($email),
             ]);
+
+        $user = $this->where('email', $email)
+            ->first();
 
         Mail::to($email)
             ->send(new VerificationEmail($user));
