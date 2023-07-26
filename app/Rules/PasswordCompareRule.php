@@ -11,12 +11,12 @@ class PasswordCompareRule implements ValidationRule
 {
     public function __construct($email)
     {
-        $this->$email = $email;
+        $this->email = $email;
     }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $user = User::where('email', $email)
+        $user = User::where('email', $this->email)
             ->first();
 
         if (Hash::check($value, $user->password)) {
