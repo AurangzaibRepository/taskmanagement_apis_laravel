@@ -11,10 +11,15 @@ class AuthTest extends TestCase
     {
         $payload = [
             'email' => 'user38@laravel.com',
-            'password' => '12345678',
+            'password' => '123456',
         ];
 
         $response = $this->postJson('/api/auth/login', $payload);
+        $status = $response->decodeResponseJson()['status'];
+
+        if (!$status) {
+            $payload['password'] = '12345678';
+        }
 
         $response
             ->assertStatus(200)
