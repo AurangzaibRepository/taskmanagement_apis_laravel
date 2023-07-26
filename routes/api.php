@@ -29,7 +29,7 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('change-password', [AuthController::class, 'changePassword']);
     Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
-    Route::get('reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
+    Route::post('reset-password', [AuthController::class, 'resetPassword']);
 });
 
 Route::get('categories/all', [CategoriesController::class, 'all']);
