@@ -21,7 +21,7 @@ class CreateTeamHandler
     {
         WebhookCall::create()
             ->url(env('TEAM_WEBHOOK_URL'))
-            ->payload(['user' => $event->team])
+            ->payload(['team' => $event->team])
             ->useSecret(env('WEBHOOK_SECRET'))
             ->dispatch();
     }
