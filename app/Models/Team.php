@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -107,6 +108,7 @@ class Team extends Model
 
         $team = $this->create($request->all());
         $response['id'] = $team->id;
+        TeamCreated::dispatch($team);
 
         return $response;
     }
