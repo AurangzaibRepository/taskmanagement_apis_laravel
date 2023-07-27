@@ -186,5 +186,6 @@ return [
     ])->toArray(),
 
     'page_length' => env('PAGE_LENGTH'),
-
+    'team_webhook_url' => env('TEAM_WEBHOOK_URL'),
+    'webhook_secret' => env('WEBHOOK_SECRET'),
 ];
