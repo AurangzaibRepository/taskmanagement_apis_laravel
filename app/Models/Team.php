@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Event\TeamUpdated;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
 use Illuminate\Database\Eloquent\Builder;
@@ -121,6 +122,8 @@ class Team extends Model
             ->update(
                 $request->except(['_method', 'logo_file'])
             );
+
+        TeamUpdated::dispatch($this->find($request->id));
     }
 
     public function deleteRecord(int $id): void
