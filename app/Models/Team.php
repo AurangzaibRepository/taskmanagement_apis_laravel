@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Event\TeamUpdated;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
+use App\Events\TeamUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
