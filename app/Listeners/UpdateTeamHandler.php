@@ -21,7 +21,7 @@ class UpdateTeamHandler
     {
         WebhookCall::create()
             ->url(env('TEAM_WEBHOOK_URL'))
-            ->payload(['user' => $event->user])
+            ->payload(['user' => $event->team])
             ->useSecret(env('WEBHOOK_SECRET'))
             ->dispatch();
     }
