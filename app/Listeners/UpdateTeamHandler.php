@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\TeamUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Spatie\WebhookServer\WebhookCall;
 
 class UpdateTeamHandler
 {
@@ -20,5 +19,10 @@ class UpdateTeamHandler
      */
     public function handle(TeamUpdated $event): void
     {
+        WebhookCall::create()
+            ->url(env('TEAM_WEBHOOK_URL'))
+            ->payload(['user' => $event->user])
+            ->useSecret(env('WEBHOOK_SECRET'))
+            ->dispatch();
     }
 }
