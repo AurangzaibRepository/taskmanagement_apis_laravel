@@ -20,9 +20,9 @@ class UpdateTeamHandler
     public function handle(TeamUpdated $event): void
     {
         WebhookCall::create()
-            ->url(env('TEAM_WEBHOOK_URL'))
+            ->url(config('app.client_webhook_url'))
             ->payload(['team' => $event->team])
-            ->useSecret(env('WEBHOOK_SECRET'))
+            ->useSecret(config('app.webhook_secret'))
             ->dispatch();
     }
 }
