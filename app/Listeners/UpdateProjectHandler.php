@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ProjectUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Spatie\WebhookServer\WebhookCall;
 
 class UpdateProjectHandler
 {
@@ -20,5 +19,15 @@ class UpdateProjectHandler
      */
     public function handle(ProjectUpdated $event): void
     {
+        $data = [
+            'project' => $event->project,
+        ];
+        $data['project']['team'] = $event->project->team;
+
+        WebhookCall::create()
+            ->url(config('app.client_webhook_url'))
+            ->payload($data)
+            ->useSecret(config('app.webhook_secret'))
+            ->dispatch();
     }
 }
