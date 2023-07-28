@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\CategoryCreated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Spatie\WebhookServer\WebhookCall;
 
 class CreateCategoryHandler
 {
@@ -20,5 +19,10 @@ class CreateCategoryHandler
      */
     public function handle(CategoryCreated $event): void
     {
+        WebhookCall::create()
+            ->url(config('app.client_webhook_url'))
+            ->payload(['category' => $event->category])
+            ->useSecret(config('app.webhook_secret'))
+            ->dispatch();
     }
 }
