@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Department;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -15,7 +16,7 @@ class DepartmentUpdated
      * Create a new event instance.
      */
     public function __construct(
-        public Deaprtment $department,
+        public Department $department,
     ) {
     }
 
