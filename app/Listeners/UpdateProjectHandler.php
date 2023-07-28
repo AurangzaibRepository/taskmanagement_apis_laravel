@@ -23,6 +23,7 @@ class UpdateProjectHandler
             'project' => $event->project,
         ];
         $data['project']['team'] = $event->project->team;
+        $data['project']['tasks'] = $event->project->tasks;
 
         WebhookCall::create()
             ->url(config('app.client_webhook_url'))
