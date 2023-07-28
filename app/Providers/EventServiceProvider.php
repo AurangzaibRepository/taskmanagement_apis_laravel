@@ -11,16 +11,17 @@ use App\Events\DepartmentUpdated;
 use App\Events\ProjectCreated;
 use App\Events\ProjectDeleted;
 use App\Events\ProjectUpdated;
+use App\Events\TaskCreated;
+use App\Events\TaskUpdated;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
 use App\Events\TeamUpdated;
-use App\Events\TaskCreated;
 use App\Events\UserDeleted;
 use App\Listeners\CreateCategoryHandler;
 use App\Listeners\CreateDepartmentHandler;
 use App\Listeners\CreateProjectHandler;
-use App\Listeners\CreateTeamHandler;
 use App\Listeners\CreateTaskHandler;
+use App\Listeners\CreateTeamHandler;
 use App\Listeners\DeleteCategoryTasks;
 use App\Listeners\DeleteDepartmentUsers;
 use App\Listeners\DeleteProjectTasks;
@@ -29,6 +30,7 @@ use App\Listeners\DeleteUserTasks;
 use App\Listeners\UpdateCategoryHandler;
 use App\Listeners\UpdateDepartmentHandler;
 use App\Listeners\UpdateProjectHandler;
+use App\Listeners\UpdateTaskHandler;
 use App\Listeners\UpdateTeamHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -87,6 +89,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         TaskCreated::class => [
             CreateTaskHandler::class,
+        ],
+        TaskUpdated::class => [
+            UpdateTaskHandler::class,
         ],
     ];
 
