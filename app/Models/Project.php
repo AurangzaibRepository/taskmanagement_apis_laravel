@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ProjectCreated;
 use App\Events\ProjectDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,6 +71,7 @@ class Project extends Model
     {
         $project = $this->create($data);
         $response['id'] = $project->id;
+        ProjectCreated::dispatch($project);
 
         return $response;
     }
