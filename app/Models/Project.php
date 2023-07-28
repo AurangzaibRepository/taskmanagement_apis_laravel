@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\ProjectCreated;
 use App\Events\ProjectDeleted;
+use App\Events\ProjectUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -82,6 +83,8 @@ class Project extends Model
             ->update(
                 $request->except(['_method']),
             );
+
+        ProjectUpdated::dispatch($this->find($request->id));
     }
 
     public function deleteRecord(int $id): void
