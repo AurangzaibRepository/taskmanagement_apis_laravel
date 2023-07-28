@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\CategoryCreated;
 use App\Events\CategoryDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,6 +41,7 @@ class Category extends Model
     {
         $category = $this->create($data);
         $response['id'] = $category->id;
+        CategoryCreated::dispatch($category);
 
         return $response;
     }
