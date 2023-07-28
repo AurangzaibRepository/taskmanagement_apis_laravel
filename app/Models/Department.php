@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\DepartmentCreated;
 use App\Events\DepartmentDeleted;
+use App\Events\DepartmentUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -71,6 +72,8 @@ class Department extends Model
             ->update(
                 $request->except(['_method'])
             );
+
+        DepartmentUpdated::dispatch($this->find($request->id));
     }
 
     public function getData(int $id): array
