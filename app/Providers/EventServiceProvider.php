@@ -8,22 +8,24 @@ use App\Events\CategoryUpdated;
 use App\Events\DepartmentCreated;
 use App\Events\DepartmentDeleted;
 use App\Events\DepartmentUpdated;
+use App\Events\ProjectCreated;
 use App\Events\ProjectDeleted;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
 use App\Events\TeamUpdated;
 use App\Events\UserDeleted;
+use App\Listeners\CreateCategoryHandler;
+use App\Listeners\CreateDepartmentHandler;
+use App\Listeners\CreateProjectHandler;
 use App\Listeners\CreateTeamHandler;
 use App\Listeners\DeleteCategoryTasks;
 use App\Listeners\DeleteDepartmentUsers;
 use App\Listeners\DeleteProjectTasks;
 use App\Listeners\DeleteTeamProjects;
 use App\Listeners\DeleteUserTasks;
-use App\Listeners\UpdateTeamHandler;
-use App\Listeners\CreateCategoryHandler;
 use App\Listeners\UpdateCategoryHandler;
-use App\Listeners\CreateDepartmentHandler;
 use App\Listeners\UpdateDepartmentHandler;
+use App\Listeners\UpdateTeamHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -39,6 +41,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ProjectCreated::class => [
+            CreateProjectHandler::class,
         ],
         ProjectDeleted::class => [
             DeleteProjectTasks::class,
