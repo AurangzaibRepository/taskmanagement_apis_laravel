@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\DepartmentUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Spatie\WebhookServer\WebhookCall;
 
 class UpdateDepartmentHandler
 {
@@ -20,5 +19,15 @@ class UpdateDepartmentHandler
      */
     public function handle(DepartmentUpdated $event): void
     {
+        $data = [
+            'department' => $event->department,
+        ];
+        $data['department']['team'] = $event->department->team;
+
+        WebhookCall::create()
+            ->url(config('app.client_webhook_url'))
+            ->payload($data)
+            ->useSecret(config('app.webhook_secret'))
+            ->dispatch();
     }
 }
