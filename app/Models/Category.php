@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\CategoryCreated;
 use App\Events\CategoryDeleted;
+use App\Events\CategoryUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +51,8 @@ class Category extends Model
     {
         $this->where('id', $id)
             ->update($data);
+
+        CategoryUpdated::dispatch($this->find($id));
     }
 
     public function deleteRecord(int $id): void
