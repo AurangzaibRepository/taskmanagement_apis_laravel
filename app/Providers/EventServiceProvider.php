@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\CategoryCreated;
 use App\Events\CategoryDeleted;
+use App\Events\CategoryUpdated;
 use App\Events\DepartmentDeleted;
 use App\Events\ProjectDeleted;
 use App\Events\TeamCreated;
@@ -18,6 +19,7 @@ use App\Listeners\DeleteTeamProjects;
 use App\Listeners\DeleteUserTasks;
 use App\Listeners\UpdateTeamHandler;
 use App\Listeners\CreateCategoryHandler;
+use App\Listeners\UpdateCategoryHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -57,6 +59,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CategoryCreated::class => [
             CreateCategoryHandler::class,
+        ],
+        CategoryUpdated::class => [
+            UpdateCategoryHandler::class,
         ],
     ];
 
