@@ -7,6 +7,7 @@ use App\Events\CategoryDeleted;
 use App\Events\CategoryUpdated;
 use App\Events\DepartmentCreated;
 use App\Events\DepartmentDeleted;
+use App\Events\DepartmentUpdated;
 use App\Events\ProjectDeleted;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
@@ -22,6 +23,7 @@ use App\Listeners\UpdateTeamHandler;
 use App\Listeners\CreateCategoryHandler;
 use App\Listeners\UpdateCategoryHandler;
 use App\Listeners\CreateDepartmentHandler;
+use App\Listeners\UpdateDepartmentHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -49,6 +51,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         DepartmentCreated::class => [
             CreateDepartmentHandler::class,
+        ],
+        DepartmentUpdated::class => [
+            UpdateDepartmentHandler::class,
         ],
         DepartmentDeleted::class => [
             DeleteDepartmentUsers::class,
