@@ -28,7 +28,7 @@ class CreateTaskHandler
 
         WebhookCall::create()
             ->url(config('app.client_webhook_url'))
-            ->payload($$data)
+            ->payload($data)
             ->useSecret(config('app.webhook_secret'))
             ->dispatch();
     }
