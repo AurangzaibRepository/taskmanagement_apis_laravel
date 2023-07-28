@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\DepartmentCreated;
 use App\Events\DepartmentDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,6 +60,7 @@ class Department extends Model
     {
         $department = $this->create($data);
         $response['id'] = $department->id;
+        DepartmentCreated::dispatch($department);
 
         return $response;
     }
