@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TaskCreated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -71,6 +72,7 @@ class Task extends Model
     {
         $task = $this->create($request->all());
         $this->saveImages($request, $task->id);
+        TaskCreated::dispatch($task);
 
         $response['id'] = $task->id;
 
