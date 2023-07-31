@@ -16,12 +16,14 @@ use App\Events\TaskUpdated;
 use App\Events\TeamCreated;
 use App\Events\TeamDeleted;
 use App\Events\TeamUpdated;
+use App\Events\UserCreated;
 use App\Events\UserDeleted;
 use App\Listeners\CreateCategoryHandler;
 use App\Listeners\CreateDepartmentHandler;
 use App\Listeners\CreateProjectHandler;
 use App\Listeners\CreateTaskHandler;
 use App\Listeners\CreateTeamHandler;
+use App\Listeners\CreateUserHandler;
 use App\Listeners\DeleteCategoryTasks;
 use App\Listeners\DeleteDepartmentUsers;
 use App\Listeners\DeleteProjectTasks;
@@ -71,6 +73,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         DepartmentDeleted::class => [
             DeleteDepartmentUsers::class,
+        ],
+        UserCreated::class => [
+            CreateUserHandler::class,
         ],
         UserDeleted::class => [
             DeleteUserTasks::class,
