@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -14,8 +15,9 @@ class UserUpdated
     /**
      * Create a new event instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public User $user,
+    ) {
     }
 
     /**
