@@ -18,6 +18,7 @@ use App\Events\TeamDeleted;
 use App\Events\TeamUpdated;
 use App\Events\UserCreated;
 use App\Events\UserDeleted;
+use App\Events\UserUpdated;
 use App\Listeners\CreateCategoryHandler;
 use App\Listeners\CreateDepartmentHandler;
 use App\Listeners\CreateProjectHandler;
@@ -34,6 +35,7 @@ use App\Listeners\UpdateDepartmentHandler;
 use App\Listeners\UpdateProjectHandler;
 use App\Listeners\UpdateTaskHandler;
 use App\Listeners\UpdateTeamHandler;
+use App\Listeners\UpdateUserListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -76,6 +78,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserCreated::class => [
             CreateUserHandler::class,
+        ],
+        UserUpdated::class => [
+            UpdateUserListener::class,
         ],
         UserDeleted::class => [
             DeleteUserTasks::class,
