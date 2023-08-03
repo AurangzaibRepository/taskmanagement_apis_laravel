@@ -201,4 +201,15 @@ class User extends Model
         Mail::to($email)
             ->send(new VerificationEmail($user));
     }
+
+    public function getUser(string $email): User
+    {
+        $user = $this->where('email', $email)
+            ->first();
+
+        $token = $user->createToken('Login token');
+        $user->token = $token->plainTextToken;
+
+        return $user;
+    }
 }
