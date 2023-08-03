@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
-class Handler extends ExceptionHandler
+class Handler_copy extends ExceptionHandler
 {
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
@@ -28,17 +28,8 @@ class Handler extends ExceptionHandler
             //
         });
 
-        // For sanctum auth error message
-        $this->renderable(function (\Illuminate\Auth\AuthenticationException $e, $request) {
-            if ($request->is('api/*')) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Unauthorized access',
-                ], 401);
-            }
-        });
-
         $this->renderable(function (Exception $exception) {
+            //return getResponse(false, null, 'Error occurred');
             return getResponse(false, null, $exception->getMessage());
         });
     }
