@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->foreignId('team_id');
+            $this->rememberToken();
             $table->timestamps();
         });
     }

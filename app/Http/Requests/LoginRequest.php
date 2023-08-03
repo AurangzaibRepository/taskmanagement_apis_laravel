@@ -14,7 +14,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:users',
-            'password' => ['required', new PasswordRule($this->email)],
+            'password' => ['required', new PasswordRule($this->request->get('email'))],
         ];
     }
 
