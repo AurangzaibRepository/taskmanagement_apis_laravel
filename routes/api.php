@@ -7,7 +7,6 @@ use App\Http\Controllers\API\ProjectsController;
 use App\Http\Controllers\API\TasksController;
 use App\Http\Controllers\API\TeamsController;
 use App\Http\Controllers\API\UsersController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
@@ -33,27 +28,29 @@ Route::prefix('auth')->group(function () {
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
 });
 
-Route::get('categories/all', [CategoriesController::class, 'all']);
-Route::post('categories/change-status/{id}/{status}', [CategoriesController::class, 'changeStatus']);
-Route::post('categories/listing', [CategoriesController::class, 'listing']);
-Route::resource('categories', CategoriesController::class);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('categories/all', [CategoriesController::class, 'all']);
+    Route::post('categories/change-status/{id}/{status}', [CategoriesController::class, 'changeStatus']);
+    Route::post('categories/listing', [CategoriesController::class, 'listing']);
+    Route::resource('categories', CategoriesController::class);
 
-Route::get('teams/all', [TeamsController::class, 'all']);
-Route::post('teams/listing', [TeamsController::class, 'listing']);
-Route::resource('teams', TeamsController::class);
+    Route::get('teams/all', [TeamsController::class, 'all']);
+    Route::post('teams/listing', [TeamsController::class, 'listing']);
+    Route::resource('teams', TeamsController::class);
 
-Route::get('projects/all/{teamId}', [ProjectsController::class, 'all']);
-Route::post('projects/listing', [ProjectsController::class, 'listing']);
-Route::resource('projects', ProjectsController::class);
+    Route::get('projects/all/{teamId}', [ProjectsController::class, 'all']);
+    Route::post('projects/listing', [ProjectsController::class, 'listing']);
+    Route::resource('projects', ProjectsController::class);
 
-Route::get('tasks/all/{projectId}', [TasksController::class, 'all']);
-Route::post('tasks/listing', [TasksController::class, 'listing']);
-Route::resource('tasks', TasksController::class);
+    Route::get('tasks/all/{projectId}', [TasksController::class, 'all']);
+    Route::post('tasks/listing', [TasksController::class, 'listing']);
+    Route::resource('tasks', TasksController::class);
 
-Route::get('departments/all/{teamId}', [DepartmentsController::class, 'all']);
-Route::post('departments/listing', [DepartmentsController::class, 'listing']);
-Route::resource('departments', DepartmentsController::class);
+    Route::get('departments/all/{teamId}', [DepartmentsController::class, 'all']);
+    Route::post('departments/listing', [DepartmentsController::class, 'listing']);
+    Route::resource('departments', DepartmentsController::class);
 
-Route::get('users/all/{teamId}/{departmentId}', [UsersController::class, 'all']);
-Route::post('users/listing', [UsersController::class, 'listing']);
-Route::resource('users', UsersController::class);
+    Route::get('users/all/{teamId}/{departmentId}', [UsersController::class, 'all']);
+    Route::post('users/listing', [UsersController::class, 'listing']);
+    Route::resource('users', UsersController::class);
+});
